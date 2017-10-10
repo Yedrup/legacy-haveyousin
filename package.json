@@ -1,0 +1,26 @@
+{
+  "name": "starter-project",
+  "version": "1.0.0",
+  "description": "starter project boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "devserver": "./node_modules/.bin/webpack-dev-server"
+  },
+  "author": "Purdey Chambraud",
+  "license": "ISC",
+  "dependencies": {
+    "@uirouter/angularjs": "^1.0.8",
+    "angular": "^1.6.6",
+    "angular-ui-router": "^0.4.3",
+    "webpack": "^3.6.0"
+  },
+  "devDependencies": {
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.1",
+    "html-webpack-plugin": "^2.30.1",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
+  }
+}
