@@ -1,36 +1,62 @@
+//CSS
 import './style/app.css'
-import angular from 'angular' //cherche dans les nodes_modules
-import '@uirouter/angularjs'
+
+
+//Config
+import angular from 'angular'
 import config from './app.config.js'
-// import run from './app.run.js'
-import toto from './hello/hello.controller.js'
+import '@uirouter/angularjs'
+
+//services
+import tmdbService from './services/service.tmdb.js' 
+// import suggestiontv from './services/service.suggestiontv.js' 
+
+
+//Controllers
+import HelloController from './hello/hello.controller.js'
 import HomeController from './home/home.controller.js' 
+import CardTvCtrl from './directives/cards/CardTv.controller.js' 
 
 
 
+var app = angular.module('haveYouSin', ['ui.router']);
 
-var app = angular.module('lastApp', ['ui.router' ]);
+//services
+app.service('tmdbService', tmdbService);
+// app.service('suggestiontv', suggestiontv);
+
+//config
 app.config(config);
-// app.run(run);
-app.controller('HelloController', toto);
+
+
+//controller
+app.controller('CardTvCtrl', CardTvCtrl);
+app.controller('HelloController', HelloController);
 app.controller('HomeController', HomeController);
 
+
+app.directive("cardTv", function () {
+    return {
+        templateUrl: "src/directives/cards/card-tv.html",
+        restrict: "E",
+        controller: 'CardTvCtrl',
+        controllerAs: 'cardTv'
+    };
+});
+
+
 //directives
-app.directive("firstDirective", function () {
-    return {
-        templateUrl: "./templates/directives/first-directive.html",
-        restrict: "E",
-        controller: 'firstDirectiveCtrl'
-        /*,
-                controllerAs: 'first'*/
-    };
-});
-app.directive("secondDirective", function () {
-    return {
-        templateUrl: "./templates/directives/second-directive.html",
-        restrict: "E",
-        controller: 'secondDirectiveCtrl'
-        /*,
-                controllerAs: 'second'*/
-    };
-});
+// app.directive("firstDirective", function () {
+//     return {
+//         templateUrl: "./templates/directives/first-directive.html",
+//         restrict: "E",
+//         controller: 'firstDirectiveCtrl'
+//     };
+// });
+// app.directive("secondDirective", function () {
+//     return {
+//         templateUrl: "./templates/directives/second-directive.html",
+//         restrict: "E",
+//         controller: 'secondDirectiveCtrl'
+//     };
+// });

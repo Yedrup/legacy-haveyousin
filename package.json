@@ -1,25 +1,28 @@
 {
-  "name": "starter-project",
+  "name": "haveYouSin",
   "version": "1.0.0",
-  "description": "starter project boilerplate",
+  "description": "haveYouSin is a web app on which you can create a to watch list with tv shows and movies using the movie database API v4(https://developers.themoviedb.org/4/getting-started). This app is built with angulars js (1.6), webpack 3.6, ui-router and materialize css framework",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "devserver": "./node_modules/.bin/webpack-dev-server"
+    "devserver": "./node_modules/.bin/webpack-dev-server --devtool eval-cheap-module-source-map",
+    "dev": "./node_modules/.bin/webpack --watch"
   },
   "author": "Purdey Chambraud",
   "license": "ISC",
   "dependencies": {
     "@uirouter/angularjs": "^1.0.8",
     "angular": "^1.6.6",
-    "angular-ui-router": "^0.4.3",
+    "materialize-css": "^0.100.2",
     "webpack": "^3.6.0"
   },
   "devDependencies": {
     "css-loader": "^0.28.7",
     "extract-text-webpack-plugin": "^3.0.1",
+    "file-loader": "^1.1.5",
     "html-webpack-plugin": "^2.30.1",
     "style-loader": "^0.19.0",
+    "url-loader": "^0.6.2",
     "webpack": "^3.6.0",
     "webpack-dev-server": "^2.9.1"
   }

@@ -4,18 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta description="first application with ionic!">
+    <meta description="HaveYouSin is your tool to create a to watch list including movies and TV shows">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Starter project</title>
+    <title>haveYouSin?</title>
 </head>
 
-<body ng-app="lastApp">
-    <nav>
-        <a ui-sref="home" ui-sref-active="active">Accueil</a>
-        <a ui-sref="hello" ui-sref-active="active">Hello</a>
+<body ng-app="haveYouSin">
+        <a ui-sref="home" ui-sref-active="c-nav__item--active">Home</a>
+        <a ui-sref="hello" ui-sref-active="c-nav__item--active">Hello</a>
+    <nav class="nav-wrapper c-nav">
+        <ul class="c-nav__items">
+            <li><a ui-sref="hello" ui-sref-active="c-nav__item--active">To watch list</a></li>
+            <li> <a ui-sref="hello" ui-sref-active="c-nav__item--active">Calendar</a>    </li>
+            <li><a ui-sref="hello" ui-sref-active="c-nav__item--active">Favorites</a></li>
+            <li><a ui-sref="hello" ui-sref-active="c-nav__item--active">Archives</a>    </li>
+            <li></li>
+        </ul>          
     </nav>
-    <main ui-view>
+    <main class="c-main" ui-view>
     </main>
+    <footer class="c-footer">
+
+    </footer>
 </body>
 
 </html>
