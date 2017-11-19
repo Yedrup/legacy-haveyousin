@@ -13,10 +13,11 @@ import tmdbService from './services/service.tmdb.js'
 
 
 //Controllers
-import HelloController from './hello/hello.controller.js'
+import DetailTvController from './details/detailTV.controller.js'
+import DetailMovieController from './details/detailMovie.controller.js'
 import HomeController from './home/home.controller.js' 
 import CardTvCtrl from './directives/cards/CardTv.controller.js' 
-
+import PannelController from './directives/pannel/pannel.controller.js' 
 
 
 var app = angular.module('haveYouSin', ['ui.router']);
@@ -31,8 +32,11 @@ app.config(config);
 
 //controller
 app.controller('CardTvCtrl', CardTvCtrl);
-app.controller('HelloController', HelloController);
+app.controller('DetailMovieController', DetailMovieController);
 app.controller('HomeController', HomeController);
+app.controller('DetailTvController', DetailTvController);
+app.controller('PannelController', PannelController);
+
 
 
 app.directive("cardTv", function () {
@@ -43,16 +47,17 @@ app.directive("cardTv", function () {
         controllerAs: 'cardTv'
     };
 });
+app.directive("pannel", function () {
+    return {
+        templateUrl: "src/directives/pannel/pannel.view.html",
+        restrict: "E",
+        controller: 'PannelController',
+        controllerAs: 'pannel'
+    };
+});
 
 
 //directives
-// app.directive("firstDirective", function () {
-//     return {
-//         templateUrl: "./templates/directives/first-directive.html",
-//         restrict: "E",
-//         controller: 'firstDirectiveCtrl'
-//     };
-// });
 // app.directive("secondDirective", function () {
 //     return {
 //         templateUrl: "./templates/directives/second-directive.html",

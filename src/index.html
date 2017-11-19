@@ -10,16 +10,32 @@
 </head>
 
 <body ng-app="haveYouSin">
-        <a ui-sref="home" ui-sref-active="c-nav__item--active">Home</a>
-        <a ui-sref="hello" ui-sref-active="c-nav__item--active">Hello</a>
+    <a ui-sref="home" ui-sref-active="c-nav__item--active">Home</a>
+    <a ui-sref="hello" ui-sref-active="c-nav__item--active">Hello</a>
+    <header class="c-header">
+        <h2 class="c-logo">HaveYouSin?</h2>
+        <form class="c-form" novalidate>
+            <div class="input-field c-wrap-field--search">
+                <input type="search" class="c-field" name='search' placeholder="Movie, Serie, Actor, Genre" />
+            </div>
+        </form>
+    </header>
     <nav class="nav-wrapper c-nav">
         <ul class="c-nav__items">
-            <li><a ui-sref="hello" ui-sref-active="c-nav__item--active">To watch list</a></li>
-            <li> <a ui-sref="hello" ui-sref-active="c-nav__item--active">Calendar</a>    </li>
-            <li><a ui-sref="hello" ui-sref-active="c-nav__item--active">Favorites</a></li>
-            <li><a ui-sref="hello" ui-sref-active="c-nav__item--active">Archives</a>    </li>
+            <li>
+                <a ui-sref="hello" ui-sref-active="c-nav__item--active">To watch list</a>
+            </li>
+            <li>
+                <a ui-sref="hello" ui-sref-active="c-nav__item--active">Calendar</a>
+            </li>
+            <li>
+                <a ui-sref="hello" ui-sref-active="c-nav__item--active">Favorites</a>
+            </li>
+            <li>
+                <a ui-sref="hello" ui-sref-active="c-nav__item--active">Archives</a>
+            </li>
             <li></li>
-        </ul>          
+        </ul>
     </nav>
     <main class="c-main" ui-view>
     </main>

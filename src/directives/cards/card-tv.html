@@ -1,13 +1,19 @@
 <div class="c-section">
-    <article ng-repeat="suggestionTV in cardTv.suggestionsTV" class="c-card card ">
-        <header class="c-card__header">
-            <h2 class="c-card__title">{{suggestionTV.name}}</h2>
-            <p>{{suggestionTV.first_air_date | date:'yyyy' }}</p>
-        </header>
-        <!-- <p>{{suggestionTV.overview}}</p> -->
-        <img class="c-card__image" ng-src=https://image.tmdb.org/t/p/w185/{{suggestionTV.poster_path}}>
-        <footer class="c-card__footer">
 
-        </footer>
-    </article>
+    <a href="" ng-repeat="suggestionTV in cardTv.suggestionsTV" class="c-card card ">
+        <article>
+            <header class="c-card__header">
+                <h2 class="c-card__title">{{suggestionTV.name| limitTo:20}}</h2>
+                <p class="c-card__date">{{suggestionTV.first_air_date | date:'yyyy' }}</p>
+                <!-- <p>{{suggestionTV.id}}</p> -->
+            </header>
+            <!-- <p>{{suggestionTV.overview}}</p> -->
+            <img class="c-card__image" ng-src=https://image.tmdb.org/t/p/w185/{{suggestionTV.poster_path}}>
+            <footer class="c-card__footer">
+                <i class="c-card__icon c-card__icon--type  fa fa-television" aria-hidden="true"></i>
+                <pannel class="c-pannel"></pannel>                
+            </footer>
+        </article>
+    </a>
+    
 </div>

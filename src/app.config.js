@@ -8,12 +8,19 @@ function config($stateProvider, $locationProvider, $urlRouterProvider,$sceDelega
     //Routes
       $stateProvider
           .state({
-              name        : 'hello',
-              url         : '/hello',
-              templateUrl : 'src/hello/hello.view.html',
-              controller  : 'HelloController',
-              controllerAs: 'hello'
+              name        : 'detailTV',
+              url         : '/detailTV',
+              templateUrl : 'src/details/detail.view.html',
+              controller  : 'DetailTvController',
+              controllerAs: 'model'
           })
+          .state({
+            name        : 'detailMovie',
+            url         : '/detailMovie',
+            templateUrl : 'src/details/detail.view.html',
+            controller  : 'DetailMovieController',
+            controllerAs: 'model'
+        })
           .state({
              name        : 'home',
              url         : '/',

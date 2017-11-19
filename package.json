@@ -13,6 +13,7 @@
   "dependencies": {
     "@uirouter/angularjs": "^1.0.8",
     "angular": "^1.6.6",
+    "font-awesome": "^4.7.0",
     "materialize-css": "^0.100.2",
     "webpack": "^3.6.0"
   },
