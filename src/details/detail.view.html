@@ -1,52 +1,27 @@
 <h2>Hello {{model.message}}</h2>
 <section class="c-details">
     <header class="c-detail__header">
-        <img src="https://placebear.com/200/300" alt="">
+        <img ng-src="https://image.tmdb.org/t/p/w185/{{model.contentDetails.poster_path}}" alt="">
         <div class="c-detail__header__text">
-            <h1 class="c-detail__title">Titre Content (année)</h1>
+            <h1 class="c-detail__title"> {{model.contentTitle}} ({{model.contentDetails.first_air_date | date:'yyyy' }})</h1>
             <p>si serie: still runing/ended</p>
             <p>
-                <a href="">genre : lien vers liste genre</a>
+                <a href="">{{model.contentDetails.homepage}} : lien vers liste genre</a>
             </p>
+            <p>{{model.contentDetails.overview}}</p>
             <pannel></pannel>
         </div>
     </header>
     <div class="c-cast">
         <h3>Cast</h3>
         <ul class="c-cast__main">
-            <li>
+            <li ng-repeat=" character in model.contentDetails.credits.cast">
                 <a href="" class="c-thumbnail-wrap">
                     <article class="c-thumbnail--people">
-                        <img src="https://placebear.com/80/80" alt="">
-                        <p class="c-people__name">nom du perso</p>
-                        <p class="c-people__name">nom du people</p>
-                    </article>
-                </a>
-            </li>
-            <li>
-                <a href="" class="c-thumbnail-wrap">
-                    <article class="c-thumbnail--people">
-                        <img src="https://placebear.com/80/80" alt="">
-                        <p class="c-people__name">nom du perso</p>
-                        <p class="c-people__name">nom du people</p>
-                    </article>
-                </a>
-            </li>
-            <li>
-                <a href="" class="c-thumbnail-wrap">
-                    <article class="c-thumbnail--people">
-                        <img src="https://placebear.com/80/80" alt="">
-                        <p class="c-people__name">nom du perso</p>
-                        <p class="c-people__name">nom du people</p>
-                    </article>
-                </a>
-            </li>
-            <li>
-                <a href="" class="c-thumbnail-wrap">
-                    <article class="c-thumbnail--people">
-                        <img src="https://placebear.com/80/80" alt="">
-                        <p class="c-people__name">nom du perso</p>
-                        <p class="c-people__name">nom du people</p>
+                        <img ng-src="https://image.tmdb.org/t/p/w92{{character.profile_path}}" alt="">
+                        <p class="c-people__name c-people__name--character">
+                            {{character.character}}</p>
+                        <p class="c-people__name c-people__name--people">({{character.name}})</p>
                     </article>
                 </a>
             </li>
@@ -61,11 +36,13 @@
             </li>
         </ul>
     </div>
-    <div>
+    <!-- <div>
         <h3>Bande annonce</h3>
-        <video class="responsive-video" controls>
-            <source src="movie.mp4" type="video/mp4">
-        </video>
+        <div class="video-container" controls ng-repeat="video in model.contentDetails.videos.results | filter:{name:'Official Trailer'}" ng-bind-html=youtubeIframe('{{video.key}}')>
 
-    </div>
+        </div>
+    </div> -->
 </section>
+
+            <!-- <iframe type="video/mp4" width="640" height="385" data-ng-src="{{'https//www.youtube.com/embed/'+video.key}}" frameborder="0"></iframe> -->
+            <!-- <source ng-src=https://www.youtube.com/watch?v={{video.key}} > -->

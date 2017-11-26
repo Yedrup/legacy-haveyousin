@@ -1,19 +1,16 @@
-<div class="c-section">
 
-    <a href="" ng-repeat="suggestionTV in cardTv.suggestionsTV" class="c-card card ">
-        <article>
+    <article ng-repeat="tvShow in cardTv.suggestionsTV | limitTo:10" class="c-card card ">
+        <a ng-href="#/details/{{tvShow.id}}/{{tvShow.name}}" class="c-card__link">
             <header class="c-card__header">
-                <h2 class="c-card__title">{{suggestionTV.name| limitTo:20}}</h2>
-                <p class="c-card__date">{{suggestionTV.first_air_date | date:'yyyy' }}</p>
-                <!-- <p>{{suggestionTV.id}}</p> -->
+                <h2 class="c-card__title">{{tvShow.name| limitTo:20}}</h2>
+                <p class="c-card__date">{{tvShow.first_air_date | date:'yyyy' }}</p>
+                <!-- <p>{{tvShow.id}}</p> -->
             </header>
-            <!-- <p>{{suggestionTV.overview}}</p> -->
-            <img class="c-card__image" ng-src=https://image.tmdb.org/t/p/w185/{{suggestionTV.poster_path}}>
-            <footer class="c-card__footer">
-                <i class="c-card__icon c-card__icon--type  fa fa-television" aria-hidden="true"></i>
-                <pannel class="c-pannel"></pannel>                
-            </footer>
-        </article>
-    </a>
-    
-</div>
+            <!-- <p>{{tvShow.overview}}</p> -->
+            <img class="c-card__image" ng-src=https://image.tmdb.org/t/p/w185/{{tvShow.poster_path}}>
+        </a>
+        <footer class="c-card__footer">
+            <i class="c-card__icon c-card__icon--type  fa fa-television" aria-hidden="true"></i>
+            <pannel class="c-pannel"></pannel>
+        </footer>
+    </article>

@@ -2,21 +2,22 @@ function config($stateProvider, $locationProvider, $urlRouterProvider,$sceDelega
       $locationProvider.hashPrefix('')
       $sceDelegateProvider.resourceUrlWhitelist([
         'self',
-        'https://api.themoviedb.org/**'
+        '*://api.themoviedb.org/**',
+        'https://www.youtube.com/**',        
     ]);
 
     //Routes
       $stateProvider
           .state({
               name        : 'detailTV',
-              url         : '/detailTV',
+              url         : '/details/:id/:title',
               templateUrl : 'src/details/detail.view.html',
               controller  : 'DetailTvController',
               controllerAs: 'model'
           })
           .state({
             name        : 'detailMovie',
-            url         : '/detailMovie',
+            url         : '/details/:id/:title',
             templateUrl : 'src/details/detail.view.html',
             controller  : 'DetailMovieController',
             controllerAs: 'model'
