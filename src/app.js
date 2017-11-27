@@ -13,10 +13,10 @@ import tmdbService from './services/service.tmdb.js'
 
 
 //Controllers
-import DetailTvController from './details/detailTV.controller.js'
+import detailContentController from './details/detailContent.controller.js'
 import DetailMovieController from './details/detailMovie.controller.js'
 import HomeController from './home/home.controller.js' 
-import CardTvCtrl from './directives/cards/CardTv.controller.js' 
+import CardContentCtrl from './directives/cards/CardContent.controller.js' 
 import PannelController from './directives/pannel/pannel.controller.js' 
 
 
@@ -31,20 +31,24 @@ app.config(config);
 
 
 //controller
-app.controller('CardTvCtrl', CardTvCtrl);
+app.controller('CardContentCtrl', CardContentCtrl);
 app.controller('DetailMovieController', DetailMovieController);
 app.controller('HomeController', HomeController);
-app.controller('DetailTvController', DetailTvController);
+app.controller('detailContentController', detailContentController);
 app.controller('PannelController', PannelController);
 
 
 
-app.directive("cardTv", function () {
+app.directive("cardContent", function () {
     return {
-        templateUrl: "src/directives/cards/card-tv.html",
+        scope: {},
+        bindToController: {
+          variable: '='
+        },
+        templateUrl: "src/directives/cards/card-content.html",
         restrict: "E",
-        controller: 'CardTvCtrl',
-        controllerAs: 'cardTv'
+        controller: 'CardContentCtrl',
+        controllerAs: 'model'
     };
 });
 app.directive("pannel", function () {

@@ -46,7 +46,7 @@ input[type=search].c-field {
 }
 
 .c-nav__items {
-    width: 50%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
 }
@@ -83,18 +83,26 @@ input[type=search].c-field {
 /**section**/
 
 .c-section-wrap {
+    display: flex;
+    flex-direction: column;
     justify-content: flex-start;
-    width: 100%;
+    width: 90%;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #EED;
 }
-
-/**card**/
-
-card-tv {
+.c-section__title--home {
+    color: #FFE;
+    font-size: 1.5rem;
+}
+card-content {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
 } 
+/**card**/
+
+
 
 .c-card {
     position: relative;
@@ -253,4 +261,19 @@ justify-content: space-around;
 .c-people__name--people {
     font-size: .8rem;
     color: #142842;
+}
+
+/**Media queries**/
+
+@media screen and (min-width: 640) and (max-width: 1024px) {
+ .c-nav__items {
+     width: 100%;
+ }
+}
+
+
+@media screen and (min-width: 1024px) {
+    .c-nav__items {
+        width: 50%;
+    }
 }

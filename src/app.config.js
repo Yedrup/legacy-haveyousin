@@ -9,19 +9,19 @@ function config($stateProvider, $locationProvider, $urlRouterProvider,$sceDelega
     //Routes
       $stateProvider
           .state({
-              name        : 'detailTV',
+              name        : 'detailContent',
               url         : '/details/:id/:title',
               templateUrl : 'src/details/detail.view.html',
-              controller  : 'DetailTvController',
+              controller  : 'detailContentController',
               controllerAs: 'model'
           })
-          .state({
-            name        : 'detailMovie',
-            url         : '/details/:id/:title',
-            templateUrl : 'src/details/detail.view.html',
-            controller  : 'DetailMovieController',
-            controllerAs: 'model'
-        })
+        //   .state({
+        //     name        : 'detailMovie',
+        //     url         : '/details/:id/:title',
+        //     templateUrl : 'src/details/detail.view.html',
+        //     controller  : 'DetailMovieController',
+        //     controllerAs: 'model'
+        // })
           .state({
              name        : 'home',
              url         : '/',

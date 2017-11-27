@@ -17,5 +17,4 @@ To run it :
 
 * ```$ npm install ```
 * ```$ npm run devserver ``` => go to your localhost port 9000 (http://localhost:9000/)
-* ```$ npm run devserver ```
 
