@@ -1,9 +1,8 @@
 function CardContentCtrl(tmdbService) {
-    const content = this;
-    console.log('card content ok');
-    content.isSerie;
-    content.dataToBind={};
-    content.number = 4;
+    // const content = this;
+    // console.log('card content ok');
+    // content.isSerie;
+    // content.number = 4;
     
     // content.getSuggestionsTV = function () {
     //     tmdbService
@@ -14,18 +13,18 @@ function CardContentCtrl(tmdbService) {
     //             content.isSerie = true;
     //         });
             
-    // }();
+    // };
 
 
-    content.getSuggestionsMovie = function () {
-        tmdbService
-            .discoverMovie()
-            .then(function (response) {
-                console.log(response);
-                content.dataToBind = response;
-                content.isSerie = false;
-            });  
-    }();
+    // content.getSuggestionsMovie = function () {
+    //     tmdbService
+    //         .discoverMovie()
+    //         .then(function (response) {
+    //             console.log(response);
+    //             content.dataToBind = response;
+    //             content.isSerie = false;
+    //         });  
+    // };
 
     // cardTv.getMoreDetailsTV = function () {
     //     tmdbService

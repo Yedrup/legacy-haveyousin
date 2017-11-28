@@ -1,33 +1,21 @@
-<!-- <article ng-repeat="suggestionTV in home.suggestionsTV" class="card">
-    <h2>{{suggestionTV.name}}</h2>
-    <p>{{suggestionTV.overview}}</p>
-    <img ng-src=https://image.tmdb.org/t/p/w185/{{suggestionTV.poster_path}}>
-</article> -->
-<!-- <div class="c-section-wrap">
-    <h1 class="c-section__title--home">There is {{model.dataToBind.length}} tv suggestions for you!</h1>
-    <card-content  ng-init="model.getSuggestionsTV()"></card-content>
-</div> -->
+<!-- <p>{{vm.name}}</p> -->
 
 <div class="c-section-wrap">
     <h1 class="c-section__title--home">There is {{model.content.dataToBindTV.length}} tv suggestions for you!</h1>
-    <card-content ng-init="model.getSuggestionsTV()"></card-content>
+    <a href=""> voir plus</a>
 
+    <card-content data="vm.suggestionTV"></card-content>
 </div>
 
 <div class="c-section-wrap">
     <h1 class="c-section__title--home">There is {{model.dataToBind.length}} movie suggestions for you!</h1>
-    <card-content ng-init="model.getSuggestionsMovie()"></card-content>
-</div> 
-<div class="c-section-wrap">
-        <h1 class="c-section__title--home">There is {{model.dataToBind.length}} movie suggestions for you!</h1>
-        <card-content ng-init="model.getSuggestionsMovie()"></card-content>
-    </div> 
-<!-- <div ui-view="suggestionsTV"></div>		
+    <a href=""> voir plus</a>
 
-<!-- <div class="c-section-wrap">
-    <h1 class="c-section__title--home">There is {{model.dataToBind.length}} suggestions for you!</h1>
-    <card-content ></card-content>
-</div> -->
-<!-- <div class="c-section-wrap">
-  <card-content></card-content>
-</div> -->
+    <card-content data="vm.suggestionMovie"></card-content>
+</div>
+<div class="c-section-wrap">
+    <h1 class="c-section__title--home">There is {{model.dataToBind.length}} movie suggestions for you!</h1>
+    <a href=""> voir plus</a>
+
+    <card-content data="vm.suggestionMovie"></card-content>
+</div>

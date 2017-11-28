@@ -1,4 +1,6 @@
-    <article ng-repeat="content in model.dataToBind | limitTo: model.number" class="c-card card ">
+<p>{{vm.name}}</p>
+
+   <article ng-repeat="content in vm.content | limitTo: 4" class="c-card card ">
         <a ng-href="#/details/{{content.id}}/{{content.name}}" class="c-card__link">
             <header class="c-card__header">
                 <h2 class="c-card__title">{{content.name| limitTo:20}}</h2>

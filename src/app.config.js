@@ -13,7 +13,7 @@ function config($stateProvider, $locationProvider, $urlRouterProvider,$sceDelega
               url         : '/details/:id/:title',
               templateUrl : 'src/details/detail.view.html',
               controller  : 'detailContentController',
-              controllerAs: 'model'
+              controllerAs: 'vm'
           })
         //   .state({
         //     name        : 'detailMovie',
@@ -27,7 +27,7 @@ function config($stateProvider, $locationProvider, $urlRouterProvider,$sceDelega
              url         : '/',
              templateUrl : 'src/home/home.view.html',
              controller  : 'HomeController',
-             controllerAs: 'home'
+             controllerAs: 'vm'
             })
       $urlRouterProvider.otherwise('/')
     }

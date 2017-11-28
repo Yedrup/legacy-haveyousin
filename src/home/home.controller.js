@@ -1,44 +1,28 @@
 function HomeController(tmdbService) {
-//   const home = this;
-//   //todo : home.query needs to take the value of input search
-//   home.query = "brad"; 
-//   // home.message = 'home controller ok !';
-  
-//   home.suggestionsTV ={};
-//   home.suggestionsMovie ={};
-//   home.AllSuggestions ={};
+    const vm = this;
+    console.log('home ok');
 
-//   home.getSuggestionsTV = function () {
-//     tmdbService
-//       .discoverTV()
-//       .then(function (dataSuggestionsTV) {
-//         home.suggestionsTV = dataSuggestionsTV;
-//         console.table(home.suggestionsTV);
-//       });
-//   };
-  
-//   home.getSuggestionsMovie = function () {
-//       tmdbService
-//       .discoverMovie()
-//       .then(function (dataSuggestionsMovie) {
-//         home.suggestionsMovie = dataSuggestionsMovie;
-//         console.log(home.suggestionsMovie);
-//       });
-//   };
-
-//   home.search = function () {
-//     tmdbService
-//       .searchInfo(home.query)
-//       .then(function (dataSearched) {
-//         // console.log(dataSearched);
-//       })
-//   }
+    vm.getSuggestionsTV = function () {
+        tmdbService
+            .discoverTV()
+            .then(function (response) {
+                console.log(response);
+                vm.suggestionTV = response;
+                return vm.suggestionTV;    
+                        
+            });
+    }();
 
 
-//   // home.getSuggestionsMovie();  
-//   home.getSuggestionsTV();  
-  
-//   // home.search();
+    vm.getSuggestionsMovie = function () {
+        tmdbService
+            .discoverMovie()
+            .then(function (response) {
+                console.log(response);
+                return vm.suggestionMovie = response;
+            });
+    }();
+    
 
 }
 

@@ -9,7 +9,6 @@ import '@uirouter/angularjs'
 
 //services
 import tmdbService from './services/service.tmdb.js' 
-// import suggestiontv from './services/service.suggestiontv.js' 
 
 
 //Controllers
@@ -43,12 +42,12 @@ app.directive("cardContent", function () {
     return {
         scope: {},
         bindToController: {
-          variable: '='
+            content : '=data'
         },
         templateUrl: "src/directives/cards/card-content.html",
         restrict: "E",
         controller: 'CardContentCtrl',
-        controllerAs: 'model'
+        controllerAs: 'vm'
     };
 });
 app.directive("pannel", function () {
@@ -56,16 +55,6 @@ app.directive("pannel", function () {
         templateUrl: "src/directives/pannel/pannel.view.html",
         restrict: "E",
         controller: 'PannelController',
-        controllerAs: 'pannel'
+        controllerAs: 'vm'
     };
 });
-
-
-//directives
-// app.directive("secondDirective", function () {
-//     return {
-//         templateUrl: "./templates/directives/second-directive.html",
-//         restrict: "E",
-//         controller: 'secondDirectiveCtrl'
-//     };
-// });
