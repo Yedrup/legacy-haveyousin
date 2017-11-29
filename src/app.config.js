@@ -10,18 +10,11 @@ function config($stateProvider, $locationProvider, $urlRouterProvider,$sceDelega
       $stateProvider
           .state({
               name        : 'detailContent',
-              url         : '/details/:id/:title',
+              url         : '/details/:type/:id/:title',
               templateUrl : 'src/details/detail.view.html',
               controller  : 'detailContentController',
               controllerAs: 'vm'
           })
-        //   .state({
-        //     name        : 'detailMovie',
-        //     url         : '/details/:id/:title',
-        //     templateUrl : 'src/details/detail.view.html',
-        //     controller  : 'DetailMovieController',
-        //     controllerAs: 'model'
-        // })
           .state({
              name        : 'home',
              url         : '/',

@@ -55,6 +55,6 @@ app.directive("pannel", function () {
         templateUrl: "src/directives/pannel/pannel.view.html",
         restrict: "E",
         controller: 'PannelController',
-        controllerAs: 'vm'
+        controllerAs: 'panel'
     };
 });

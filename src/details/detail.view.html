@@ -1,21 +1,22 @@
-<h2>Hello {{model.message}}</h2>
+<h2>Hello {{vm.message}}</h2>
 <section class="c-details">
     <header class="c-detail__header">
-        <img ng-src="https://image.tmdb.org/t/p/w185/{{model.contentDetails.poster_path}}" alt="">
+        <img ng-src="https://image.tmdb.org/t/p/w185/{{vm.contentDetails.poster_path}}" alt="">
         <div class="c-detail__header__text">
-            <h1 class="c-detail__title"> {{model.contentTitle}} ({{model.contentDetails.first_air_date | date:'yyyy' }})</h1>
-            <p>si serie: still runing/ended</p>
+            <h1 class="c-detail__title"> {{vm.contentTitle}} ({{vm.type==="serie"? vm.contentDetails.first_air_date :vm.contentDetails.release_date |
+                date:'yyyy' }})</h1>
+            <p ng-if="vm.type === 'serie'"> Status: {{vm.contentDetails.in_production === true? "Still running" : "Ended"}}</p>
             <p>
-                <a href="">{{model.contentDetails.homepage}} : lien vers liste genre</a>
+                <a ng-href="{{vm.contentDetails.homepage}}">Official website : {{vm.contentDetails.homepage}}</a>
             </p>
-            <p>{{model.contentDetails.overview}}</p>
+            <p>{{vm.contentDetails.overview}}</p>
             <pannel></pannel>
         </div>
     </header>
     <div class="c-cast">
-        <h3>Cast</h3>
+        <h3>Main Character</h3>
         <ul class="c-cast__main">
-            <li ng-repeat=" character in model.contentDetails.credits.cast">
+            <li ng-repeat=" character in vm.mainCharacters">
                 <a href="" class="c-thumbnail-wrap">
                     <article class="c-thumbnail--people">
                         <img ng-src="https://image.tmdb.org/t/p/w92{{character.profile_path}}" alt="">
@@ -26,15 +27,16 @@
                 </a>
             </li>
         </ul>
-        <h4>others</h4>
-        <ul class="c-cast__list">
-            <li class="c-cast__list__item">
-                <p>nom du rôle</p>
-                <a href="">
-                    <p>nom prénom</p>
-                </a>
-            </li>
-        </ul>
+        <div ng-if="vm.secondCharacters !=0">
+            <h4>Second charactors</h4>
+            <ul class="c-cast__list">
+                <li class="c-cast__list__item" ng-repeat="character in vm.secondCharacters">
+                    <p class="c-people__name--text-only">{{character.character}}</p>
+                    <a href="" class="c-people__name--text-only">{{character.name}}
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
     <!-- <div>
         <h3>Bande annonce</h3>
@@ -44,5 +46,5 @@
     </div> -->
 </section>
 
-            <!-- <iframe type="video/mp4" width="640" height="385" data-ng-src="{{'https//www.youtube.com/embed/'+video.key}}" frameborder="0"></iframe> -->
-            <!-- <source ng-src=https://www.youtube.com/watch?v={{video.key}} > -->
+<!-- <iframe type="video/mp4" width="640" height="385" data-ng-src="{{'https//www.youtube.com/embed/'+video.key}}" frameborder="0"></iframe> -->
+<!-- <source ng-src=https://www.youtube.com/watch?v={{video.key}} > -->

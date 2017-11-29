@@ -223,12 +223,24 @@ justify-content: space-around;
 }
 
 .c-cast__list {
-    width: 15%;
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
 }
 
 .c-cast__list__item {
     display: flex;
-    justify-content: space-around
+    justify-content: space-between;
+    width: 100%;
+    margin: .5rem; 
+}
+
+.c-people__name--text-only {
+    width: 50%;
+    display: flex;
+    margin: 0;
 }
 /**people**/
 .c-thumbnail-wrap {
