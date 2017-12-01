@@ -1,5 +1,5 @@
  <article ng-repeat="content in vm.content | limitTo: 5" class="c-card card ">
-        <a ng-href="#/details/{{content.type}}/{{content.id}}/{{content.title}}" class="c-card__link">
+        <a ng-href="#/details/{{content.typeContent}}/{{content.id}}/{{content.title}}" class="c-card__link">
             <header class="c-card__header">
                 <h2 class="c-card__title">{{content.title| limitTo:20}}</h2>
                 <p class="c-card__date">{{content.release_date | date:'yyyy' }}</p>

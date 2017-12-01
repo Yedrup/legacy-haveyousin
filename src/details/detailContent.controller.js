@@ -4,28 +4,51 @@ function detailContentController($stateParams, tmdbService) {
   vm.type = $stateParams.type;
   vm.contentTitle = $stateParams.title;
 
-  vm.init= function() {
+  vm.init = function () {
     if (vm.type === "serie") {
       tmdbService
         .getDetailsTV(id, 'credits,videos')
         .then(function (response) {
-          vm.message = 'page Detail d\'une série';          
+          vm.message = 'page Detail d\'une série';
           vm.contentDetails = response;
-          console.log(vm.contentDetails);
-          vm.mainCharacters = vm.contentDetails.credits.cast.splice(0,10);
-          vm.secondCharacters = vm.contentDetails.credits.cast.splice(0,vm.contentDetails.credits.cast.length);
+          vm.mainCharacters = vm.contentDetails.credits.cast.splice(0, 9);
+          vm.secondCharacters = vm.contentDetails.credits.cast.splice(0, vm.contentDetails.credits.cast.length);
+          console.log(vm.mainCharacters);
         });
-    } 
-    else if (vm.type === "movie") {
+    } else if (vm.type === "movie") {
       tmdbService
         .getDetailsMovie(id, 'credits,videos')
         .then(function (response) {
           vm.message = "page Detail d\'un film";
           vm.contentDetails = response;
-          vm.mainCharacters = vm.contentDetails.credits.cast.splice(0,10);
-          vm.secondCharacters = vm.contentDetails.credits.cast.splice(0,vm.contentDetails.credits.cast.length);
+          vm.mainCharacters = vm.contentDetails.credits.cast.splice(0, 9);
+          vm.secondCharacters = vm.contentDetails.credits.cast.splice(0, vm.contentDetails.credits.cast.length);
           console.log(vm.contentDetails);
         });
+    } else {
+      //people get people Detail
+      tmdbService
+        .getDetailsPeople(id, 'combined_credits')
+        .then(function (response) {
+          vm.message = "page Detail d\'un people";
+          vm.contentDetails = response;
+          vm.type = "people";
+          vm.keyChange = function (arrayOrigin, arrayNew, keyOrigin, keyNew) {
+            return arrayNew = arrayOrigin.map(function (item) {
+              if (keyOrigin in item) {
+                var mem = item[keyOrigin];
+                delete item[keyOrigin];
+                item[keyNew] = mem;
+              }
+              return item;
+            });
+          }
+          vm.actoringOrigin = vm.contentDetails.combined_credits.cast;
+          vm.actoringIn = vm.keyChange(vm.actoringOrigin, vm.actoringIn, 'first_air_date', 'release_date');
+          vm.actoringIn = vm.keyChange(vm.actoringOrigin, vm.actoringIn, 'name', 'title');
+          console.log(vm.actoringIn);
+        });
+
     }
 
 

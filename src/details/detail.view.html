@@ -1,25 +1,35 @@
 <h2>Hello {{vm.message}}</h2>
 <section class="c-details">
     <header class="c-detail__header">
-        <img ng-src="https://image.tmdb.org/t/p/w185/{{vm.contentDetails.poster_path}}" alt="">
+        <img ng-src="https://image.tmdb.org/t/p/w185/{{vm.type!='people'?vm.contentDetails.poster_path:vm.contentDetails.profile_path}}"
+            alt="{{vm.contentTitle}}">
         <div class="c-detail__header__text">
-            <h1 class="c-detail__title"> {{vm.contentTitle}} ({{vm.type==="serie"? vm.contentDetails.first_air_date :vm.contentDetails.release_date |
-                date:'yyyy' }})</h1>
-            <p ng-if="vm.type === 'serie'"> Status: {{vm.contentDetails.in_production === true? "Still running" : "Ended"}}</p>
+            <h1 class="c-detail__title">
+                {{vm.contentTitle}}
+                <span ng-if="vm.type !== 'people'">
+                    ({{vm.type==="serie"? vm.contentDetails.first_air_date : vm.type==="movie"? vm.contentDetails.release_date : ""| date:'yyyy' }})
+                </span>
+            </h1>
+            <p ng-if="vm.type === 'serie'"> Status: {{vm.contentDetails.in_production === true? "Still running" : "Ended"}} / {{vm.contentDetails.number_of_seasons}}
+                season{{vm.contentDetails.number_of_seasons>1 ? "s" :""}}
+            </p>
             <p>
-                <a ng-href="{{vm.contentDetails.homepage}}">Official website : {{vm.contentDetails.homepage}}</a>
+                <a ng-if="vm.contentDetails.homepage" ng-href="{{vm.contentDetails.homepage}}">Official website : {{vm.contentDetails.homepage}}
+                </a>
             </p>
             <p>{{vm.contentDetails.overview}}</p>
+
             <pannel></pannel>
         </div>
     </header>
-    <div class="c-cast">
-        <h3>Main Character</h3>
+
+    <div ng-if="vm.type !== 'people'" class="c-cast">
+        <h3>Main Characters</h3>
         <ul class="c-cast__main">
             <li ng-repeat=" character in vm.mainCharacters">
-                <a href="" class="c-thumbnail-wrap">
+                <a ng-init="" ng-href="#/details/people/{{character.id}}/{{character.name}}" class="c-thumbnail-wrap">
                     <article class="c-thumbnail--people">
-                        <img ng-src="https://image.tmdb.org/t/p/w92{{character.profile_path}}" alt="">
+                        <img ng-src="https://image.tmdb.org/t/p/w92{{character.profile_path}}" alt="{{character.character}}">
                         <p class="c-people__name c-people__name--character">
                             {{character.character}}</p>
                         <p class="c-people__name c-people__name--people">({{character.name}})</p>
@@ -27,16 +37,48 @@
                 </a>
             </li>
         </ul>
+        <!-- if people know specfic ng-repeat + cards content -->
         <div ng-if="vm.secondCharacters !=0">
             <h4>Second charactors</h4>
             <ul class="c-cast__list">
                 <li class="c-cast__list__item" ng-repeat="character in vm.secondCharacters">
                     <p class="c-people__name--text-only">{{character.character}}</p>
-                    <a href="" class="c-people__name--text-only">{{character.name}}
+                    <a ng-href="#/details/people/{{character.id}}/{{character.name}}" class="c-people__name--text-only">{{character.name}}
                     </a>
                 </li>
             </ul>
         </div>
+        <!-- if people apparition ng-repeat + cards content 
+        
+            <h4>Acting</h4>
+            <div> 
+                <icone cine></icone cine> office de select
+                <icone serie></icone serie> office de select   
+            </div> 
+            <ul class="c-cast__list">
+                <li class="c-cast__list__item" ng-repeat="apparition in vm.apparition">
+                    <p class="c-date">{{conte<nt.date}}</p>
+                    <span icone film ou serie></span>
+                    <a href="vers detail du film" class="">{{title film}}
+                    </a>
+                <p>role</p>
+                </li>
+            </ul>
+        
+        -->
+
+    </div>
+
+    <div ng-if="vm.type === 'people'" class="c-cast">
+        <h3>Actoring</h3>
+        <ul class="c-cast__list">
+            <li class="c-cast__list__item" ng-repeat="cast in      vm.actoringIn | orderBy : '-release_date'">
+                <p class="c-people__name--text-only">{{cast.release_date | date:'yyyy' }}</p>
+                <i class="c-card__icon c-card__icon--type  fa fa-{{cast.media_type === 'tv' ? 'television' : 'film'}}" aria-hidden="true"></i>
+                <a ng-href="#/details/{{cast.media_type === 'tv'? 'serie': 'movie'}}/{{cast.id}}/{{content.title}}">{{cast.title}}</a>
+                <p class="c-people__name--text-only">{{cast.character}}</p>
+            </li>
+        </ul>
     </div>
     <!-- <div>
         <h3>Bande annonce</h3>

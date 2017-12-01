@@ -20,7 +20,7 @@ function HomeController(tmdbService) {
                 }
                 vm.suggestionTV = vm.keyChange(vm.suggestionTVOrigin, vm.suggestionTV, 'name', 'title');
                 vm.suggestionTV = vm.keyChange(vm.suggestionTVOrigin, vm.suggestionTV, 'first_air_date', 'release_date');
-                vm.suggestionTV.map(obj => obj.type = "serie");
+                vm.suggestionTV.map(obj => obj.typeContent = "serie");
                 vm.suggestionTV.map(obj => obj.icon = "television");
                                 
                 console.log(vm.suggestionTV);
@@ -36,7 +36,7 @@ function HomeController(tmdbService) {
                 console.log(response);
                 vm.suggestionMovie = response;
                 vm.icon ="film";                          
-                vm.suggestionMovie.map(obj => obj.type = "movie");
+                vm.suggestionMovie.map(obj => obj.typeContent = "movie");
                 vm.suggestionMovie.map(obj => obj.icon = "film");
                 return vm.suggestionMovie;
                 
