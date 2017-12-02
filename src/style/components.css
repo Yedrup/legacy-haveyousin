@@ -11,6 +11,8 @@
 .c-logo {
     color: #e53935;
 }
+
+
 /**search**/
 
 .c-form {
@@ -18,12 +20,14 @@
     align-items: center;
     width: 20%;
 }
+
 .c-wrap-field--search {
     position: relative;
-    display: flex;    
+    display: flex;
     align-items: center;
-    width: 100%;    
+    width: 100%;
 }
+
 .c-wrap-field--search:after {
     content: "\f002";
     font-family: FontAwesome;
@@ -33,9 +37,11 @@
     bottom: 0;
     right: 0;
 }
+
 input[type=search].c-field {
     margin: 0;
 }
+
 
 /**nav**/
 
@@ -49,6 +55,11 @@ input[type=search].c-field {
     width: 100%;
     display: flex;
     justify-content: space-between;
+}
+
+.c-nav__item {
+    padding: 0 .15rem;
+    white-space: nowrap;
 }
 
 .c-nav__item--active {
@@ -90,19 +101,21 @@ input[type=search].c-field {
     padding-bottom: 2rem;
     border-bottom: 1px solid #EED;
 }
+
 .c-section__title--home {
     color: #FFE;
     font-size: 1.5rem;
 }
+
 card-content {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
-} 
+}
+
+
 /**card**/
-
-
 
 .c-card {
     position: relative;
@@ -110,7 +123,9 @@ card-content {
     flex-direction: column;
     justify-content: space-between;
     color: #EEE;
+    width: 12rem;
 }
+
 .c-card__link {
     color: #EEE;
 }
@@ -131,8 +146,9 @@ card-content {
     font-weight: bold;
 }
 
-
-.c-card__image {}
+.c-card__image {
+    max-width: 100%;
+}
 
 .c-card__footer {
     display: flex;
@@ -149,11 +165,11 @@ card-content {
 }
 
 .c-card__icon {
-    font-size: 1.25rem; 
+    font-size: 1.25rem;
 }
 
 .c-card__icon--default {
- color: grey;
+    color: grey;
 }
 
 .c-pannel {
@@ -162,68 +178,74 @@ card-content {
     width: 50%;
 }
 
-
 .c-card__pannel-icons {
     display: flex;
     justify-content: space-between;
     width: 100%;
 }
+
 .c-card__icon--type {
-    color: black;
     font-size: 1.5rem;
     font-weight: bold;
 }
 
 .c-card__icon--to-watch {
- color: grey;
+    color: grey;
 }
-
 
 .c-card__icon--done {
     color: #00bfa5;
-    
 }
 
 .c-card__icon--favorite {
     color: #e53935;
 }
 
-/* .c-card:nth-child(3n-1) {
-    margin-left: 2%;
-    margin-right: 2%;
-  } */
+.o-icon--white {
+    color: #FFE;
+}
+
+.o-icon--black {
+    color: #001;
+}
+
 
 /**Details**/
+
 .c-details {
     width: 100%;
-    padding: 0 1rem;
+    padding: 0 ;
     color: #C0C0C0;
 }
+
 .c-detail__header {
     display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
 .c-detail__header__text {
     margin-left: 2rem;
-    
 }
+
 .c-detail__title {
     margin: 0;
     font-size: 2rem;
 }
 
+
 /**cast**/
-.c-cast {
 
-}
+.c-cast {}
 
-.c-cast__main {
-display: flex;
-flex-wrap: wrap;
-justify-content: space-around;
+.c-cast-main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
 }
 
 .c-cast__list {
-    max-width: 50%;
+    max-width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -232,26 +254,49 @@ justify-content: space-around;
 
 .c-cast__list__item {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     width: 100%;
-    margin: .5rem; 
+    margin: .5rem;
 }
 
-.c-people__name--text-only {
-    width: 50%;
-    display: flex;
-    margin: 0;
+.c-cast-main__item {
+    margin-bottom: .15rem;
+    margin-right: .15rem;
 }
+
+
+.c-cast__list__item>* {
+    margin-right: 0.6rem;
+}
+
+.c-people__name--text-only,
+.c-people__name--text-only {
+    display: flex;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.c-people__cast--date {
+    width: 10%
+}
+
+
 /**people**/
+
 .c-thumbnail-wrap {
     display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
     width: 9rem;
     height: auto;
+    min-height: 15rem;
     max-height: 16rem;
     background-color: lightblue;
-    justify-content: center;
     border: 1px solid black;
 }
+
+
 
 .c-thumbnail--people {
     display: flex;
@@ -262,8 +307,8 @@ justify-content: space-around;
 
 .c-people__name {
     margin: 0;
-
 }
+
 .c-people__name--character {
     color: #454643;
     font-size: .9rem;
@@ -275,14 +320,31 @@ justify-content: space-around;
     color: #142842;
 }
 
+
 /**Media queries**/
 
-@media screen and (min-width: 640) and (max-width: 1024px) {
- .c-nav__items {
-     width: 100%;
- }
-}
+@media screen and (min-width: 640px) and (max-width: 1024px) {
+    .c-nav__items {
+        width: 100%;
+    }
+    .c-detail__header {
+        flex-direction: row;
+    }
 
+    .c-cast__list__item>* {
+        margin-right: 1rem;
+        margin-right: 0.6rem;
+    }
+    .c-cast-main__item {
+        margin-bottom: .25rem;
+        margin-right: .25rem;
+    }
+    .c-details {
+        padding: 0 1rem;
+    }
+    
+    
+}
 
 @media screen and (min-width: 1024px) {
     .c-nav__items {

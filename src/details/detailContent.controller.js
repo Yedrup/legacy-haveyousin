@@ -14,6 +14,7 @@ function detailContentController($stateParams, tmdbService) {
           vm.mainCharacters = vm.contentDetails.credits.cast.splice(0, 9);
           vm.secondCharacters = vm.contentDetails.credits.cast.splice(0, vm.contentDetails.credits.cast.length);
           console.log(vm.mainCharacters);
+          console.log(vm.contentDetails);
         });
     } else if (vm.type === "movie") {
       tmdbService
@@ -47,6 +48,8 @@ function detailContentController($stateParams, tmdbService) {
           vm.actoringIn = vm.keyChange(vm.actoringOrigin, vm.actoringIn, 'first_air_date', 'release_date');
           vm.actoringIn = vm.keyChange(vm.actoringOrigin, vm.actoringIn, 'name', 'title');
           console.log(vm.actoringIn);
+          console.log(vm.contentDetails);
+          
         });
 
     }

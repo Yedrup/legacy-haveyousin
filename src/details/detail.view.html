@@ -3,11 +3,16 @@
     <header class="c-detail__header">
         <img ng-src="https://image.tmdb.org/t/p/w185/{{vm.type!='people'?vm.contentDetails.poster_path:vm.contentDetails.profile_path}}"
             alt="{{vm.contentTitle}}">
+
         <div class="c-detail__header__text">
             <h1 class="c-detail__title">
-                {{vm.contentTitle}}
+                {{vm.type==="people"? vm.contentDetails.name : vm.contentTitle}}
                 <span ng-if="vm.type !== 'people'">
-                    ({{vm.type==="serie"? vm.contentDetails.first_air_date : vm.type==="movie"? vm.contentDetails.release_date : ""| date:'yyyy' }})
+                    ({{vm.type==="serie"? vm.contentDetails.first_air_date : vm.type==="movie"? vm.contentDetails.release_date : ""| date:'yyyy'
+                    }})
+                </span>
+                <span ng-if="vm.type === 'people'">
+                    ({{vm.contentDetails.birthday | date:'yyyy' }}{{vm.contentDetails.deathday==!null? vm.contentDetails.deathday : "" | date:'yyyy'}})
                 </span>
             </h1>
             <p ng-if="vm.type === 'serie'"> Status: {{vm.contentDetails.in_production === true? "Still running" : "Ended"}} / {{vm.contentDetails.number_of_seasons}}
@@ -17,7 +22,7 @@
                 <a ng-if="vm.contentDetails.homepage" ng-href="{{vm.contentDetails.homepage}}">Official website : {{vm.contentDetails.homepage}}
                 </a>
             </p>
-            <p>{{vm.contentDetails.overview}}</p>
+            <p>{{vm.type != "people" ? vm.contentDetails.overview : vm.contentDetails.biography}}</p>
 
             <pannel></pannel>
         </div>
@@ -25,9 +30,9 @@
 
     <div ng-if="vm.type !== 'people'" class="c-cast">
         <h3>Main Characters</h3>
-        <ul class="c-cast__main">
-            <li ng-repeat=" character in vm.mainCharacters">
-                <a ng-init="" ng-href="#/details/people/{{character.id}}/{{character.name}}" class="c-thumbnail-wrap">
+        <ul class="c-cast-main">
+            <li ng-repeat=" character in vm.mainCharacters" class="c-cast-main__item">
+                <a ng-href="#/details/people/{{character.id}}/{{character.name}}" class="c-thumbnail-wrap">
                     <article class="c-thumbnail--people">
                         <img ng-src="https://image.tmdb.org/t/p/w92{{character.profile_path}}" alt="{{character.character}}">
                         <p class="c-people__name c-people__name--character">
@@ -48,25 +53,6 @@
                 </li>
             </ul>
         </div>
-        <!-- if people apparition ng-repeat + cards content 
-        
-            <h4>Acting</h4>
-            <div> 
-                <icone cine></icone cine> office de select
-                <icone serie></icone serie> office de select   
-            </div> 
-            <ul class="c-cast__list">
-                <li class="c-cast__list__item" ng-repeat="apparition in vm.apparition">
-                    <p class="c-date">{{conte<nt.date}}</p>
-                    <span icone film ou serie></span>
-                    <a href="vers detail du film" class="">{{title film}}
-                    </a>
-                <p>role</p>
-                </li>
-            </ul>
-        
-        -->
-
     </div>
 
     <div ng-if="vm.type === 'people'" class="c-cast">
@@ -74,7 +60,7 @@
         <ul class="c-cast__list">
             <li class="c-cast__list__item" ng-repeat="cast in      vm.actoringIn | orderBy : '-release_date'">
                 <p class="c-people__name--text-only">{{cast.release_date | date:'yyyy' }}</p>
-                <i class="c-card__icon c-card__icon--type  fa fa-{{cast.media_type === 'tv' ? 'television' : 'film'}}" aria-hidden="true"></i>
+                <i class="o-icon--white c-card__icon c-card__icon--type  fa fa-{{cast.media_type === 'tv' ? 'television' : 'film'}}" aria-hidden="true"></i>
                 <a ng-href="#/details/{{cast.media_type === 'tv'? 'serie': 'movie'}}/{{cast.id}}/{{content.title}}">{{cast.title}}</a>
                 <p class="c-people__name--text-only">{{cast.character}}</p>
             </li>
