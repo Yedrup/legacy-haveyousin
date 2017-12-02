@@ -2,14 +2,18 @@
 
 .c-header {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
     background-color: #191919;
+    padding: 1rem;
     width: 100%;
     color: grey;
 }
 
 .c-logo {
     color: #e53935;
+    display: flex;
+    justify-content: center;
 }
 
 
@@ -18,7 +22,7 @@
 .c-form {
     display: flex;
     align-items: center;
-    width: 20%;
+    width: 100%;
 }
 
 .c-wrap-field--search {
@@ -132,7 +136,6 @@ card-content {
 
 .c-card__header {
     background-color: #111;
-    /*#545653*/
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -324,9 +327,22 @@ card-content {
 /**Media queries**/
 
 @media screen and (min-width: 640px) and (max-width: 1024px) {
+    /*header*/
+    .c-header {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .c-form {
+        width: 40%;
+    }
+    /*nav*/
+
     .c-nav__items {
         width: 100%;
     }
+
+    /*detail*/
+
     .c-detail__header {
         flex-direction: row;
     }
@@ -342,7 +358,7 @@ card-content {
     .c-details {
         padding: 0 1rem;
     }
-    
+   
     
 }
 
