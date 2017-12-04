@@ -29,6 +29,7 @@
     position: relative;
     display: flex;
     align-items: center;
+    height: 2rem;
     width: 100%;
 }
 
@@ -44,9 +45,42 @@
 
 input[type=search].c-field {
     margin: 0;
+    height: 100%;
+    position: relative;
 }
 
+.c-close {
+    display: flex;
+    height: 2rem;
+    align-items: center;
+    position: absolute;
+    left: -1.5rem;
+    bottom: 0;
+}
 
+.c-results-wrap {
+    position: absolute;
+    top: 2.1rem;
+    left: 0;
+    right: 0;
+    background: rgba(10,12,10, 0.97);
+    height: auto;
+    border: 1px solid rgba(255,215,0,.2);
+    z-index: 100;
+}
+ul.c-results {
+    padding: 0 .5rem;
+}
+
+.c-result-wrap{
+    display: flex;
+}
+.c-result{
+    display: flex;
+}  
+.c-result__info{
+    margin: 0 .25rem;
+}
 /**nav**/
 
 .c-nav {
@@ -144,7 +178,7 @@ card-content {
 
 .c-card__title,
 .c-card__date {
-    margin: .25rem;
+    margin: .05rem;
     font-size: .9rem;
     font-weight: bold;
 }
@@ -180,7 +214,10 @@ card-content {
     justify-content: space-around;
     width: 50%;
 }
-
+.c-pannel--details {
+    width: 16rem;
+    display: flex;
+}
 .c-card__pannel-icons {
     display: flex;
     justify-content: space-between;
@@ -217,7 +254,7 @@ card-content {
 
 .c-details {
     width: 100%;
-    padding: 0 ;
+    padding: 0;
     color: #C0C0C0;
 }
 
@@ -244,7 +281,7 @@ card-content {
 .c-cast-main {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: space-around;
 }
 
 .c-cast__list {
@@ -263,10 +300,9 @@ card-content {
 }
 
 .c-cast-main__item {
-    margin-bottom: .15rem;
-    margin-right: .15rem;
+    margin-bottom: 1rem;
+    margin-right: 0;
 }
-
 
 .c-cast__list__item>* {
     margin-right: 0.6rem;
@@ -294,12 +330,9 @@ card-content {
     width: 9rem;
     height: auto;
     min-height: 15rem;
-    max-height: 16rem;
     background-color: lightblue;
     border: 1px solid black;
 }
-
-
 
 .c-thumbnail--people {
     display: flex;
@@ -326,7 +359,7 @@ card-content {
 
 /**Media queries**/
 
-@media screen and (min-width: 640px) and (max-width: 1024px) {
+@media screen and (min-width: 640px) {
     /*header*/
     .c-header {
         flex-direction: row;
@@ -336,17 +369,16 @@ card-content {
         width: 40%;
     }
     /*nav*/
-
     .c-nav__items {
         width: 100%;
     }
-
     /*detail*/
-
+    .c-cast-main {
+        justify-content: flex-start;
+    }
     .c-detail__header {
         flex-direction: row;
     }
-
     .c-cast__list__item>* {
         margin-right: 1rem;
         margin-right: 0.6rem;
@@ -358,11 +390,16 @@ card-content {
     .c-details {
         padding: 0 1rem;
     }
-   
-    
+    /**Pannel**/
+    .c-pannel--details {
+        width: 15rem;
+    }
 }
 
 @media screen and (min-width: 1024px) {
+    .c-form {
+        width: 30%;
+    }
     .c-nav__items {
         width: 50%;
     }

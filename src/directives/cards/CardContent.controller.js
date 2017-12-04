@@ -1,4 +1,4 @@
-function CardContentCtrl(tmdbService) {
+function CardContentController(tmdbService) {
     // const content = this;
     // console.log('card content ok');
     // content.isSerie;
@@ -48,4 +48,4 @@ function CardContentCtrl(tmdbService) {
 }
 
 
-export default CardContentCtrl
+export default CardContentController

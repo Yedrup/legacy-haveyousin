@@ -13,28 +13,27 @@ import tmdbService from './services/service.tmdb.js'
 
 //Controllers
 import detailContentController from './details/detailContent.controller.js'
-import DetailMovieController from './details/detailMovie.controller.js'
 import HomeController from './home/home.controller.js' 
-import CardContentCtrl from './directives/cards/CardContent.controller.js' 
+import CardContentController from './directives/cards/CardContent.controller.js' 
 import PannelController from './directives/pannel/pannel.controller.js' 
-
+import HeaderController from './directives/header/header.controller.js'
 
 var app = angular.module('haveYouSin', ['ui.router']);
 
 //services
 app.service('tmdbService', tmdbService);
-// app.service('suggestiontv', suggestiontv);
 
 //config
 app.config(config);
 
 
 //controller
-app.controller('CardContentCtrl', CardContentCtrl);
-app.controller('DetailMovieController', DetailMovieController);
+app.controller('CardContentController', CardContentController);
 app.controller('HomeController', HomeController);
 app.controller('detailContentController', detailContentController);
 app.controller('PannelController', PannelController);
+app.controller('HeaderController', HeaderController);
+
 
 
 
@@ -44,9 +43,9 @@ app.directive("cardContent", function () {
         bindToController: {
             content : '=data'
         },
-        templateUrl: "src/directives/cards/card-content.html",
+        templateUrl: "src/directives/cards/card-content.view.html",
         restrict: "E",
-        controller: 'CardContentCtrl',
+        controller: 'CardContentController',
         controllerAs: 'vm'
     };
 });
@@ -55,6 +54,14 @@ app.directive("pannel", function () {
         templateUrl: "src/directives/pannel/pannel.view.html",
         restrict: "E",
         controller: 'PannelController',
-        controllerAs: 'panel'
+        controllerAs: 'pannel'
+    };
+});
+app.directive("headerCustom", function () {
+    return {
+        templateUrl: "src/directives/header/header.view.html",
+        restrict: "E",
+        controller: 'HeaderController',
+        controllerAs: 'vm'
     };
 });

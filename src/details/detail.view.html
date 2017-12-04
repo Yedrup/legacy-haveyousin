@@ -11,8 +11,8 @@
                     ({{vm.type==="serie"? vm.contentDetails.first_air_date : vm.type==="movie"? vm.contentDetails.release_date : ""| date:'yyyy'
                     }})
                 </span>
-                <span ng-if="vm.type === 'people'">
-                    ({{vm.contentDetails.birthday | date:'yyyy' }}{{vm.contentDetails.deathday==!null? vm.contentDetails.deathday : "" | date:'yyyy'}})
+                <span ng-if="(vm.type === 'people')">
+                    ({{vm.contentDetails.birthday === null ? "not specified" : vm.contentDetails.birthday | date:'yyyy'}}{{vm.contentDetails.deathday === null ? "" : " - " +  (vm.contentDetails.deathday | date:'yyyy') }})
                 </span>
             </h1>
             <p ng-if="vm.type === 'serie'"> Status: {{vm.contentDetails.in_production === true? "Still running" : "Ended"}} / {{vm.contentDetails.number_of_seasons}}
@@ -24,7 +24,7 @@
             </p>
             <p>{{vm.type != "people" ? vm.contentDetails.overview : vm.contentDetails.biography}}</p>
 
-            <pannel></pannel>
+            <pannel class="c-pannel--details"></pannel>
         </div>
     </header>
 
@@ -59,7 +59,7 @@
         <h3>Actoring</h3>
         <ul class="c-cast__list">
             <li class="c-cast__list__item" ng-repeat="cast in      vm.actoringIn | orderBy : '-release_date'">
-                <p class="c-people__name--text-only">{{cast.release_date | date:'yyyy' }}</p>
+                <p class="c-people__name--text-only">{{cast.release_date? cast.release_date : "____" | date:'yyyy' }}</p>
                 <i class="o-icon--white c-card__icon c-card__icon--type  fa fa-{{cast.media_type === 'tv' ? 'television' : 'film'}}" aria-hidden="true"></i>
                 <a ng-href="#/details/{{cast.media_type === 'tv'? 'serie': 'movie'}}/{{cast.id}}/{{content.title}}">{{cast.title}}</a>
                 <p class="c-people__name--text-only">{{cast.character}}</p>
