@@ -1,11 +1,23 @@
 /**header**/
 
 .c-header {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     background-color: #191919;
     padding: 1rem;
+    width: 100%;
+    color: grey;
+}
+
+.c-header__connect {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+.c-header__inner {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-around;
+    background-color: #191919;
     width: 100%;
     color: grey;
 }
@@ -361,7 +373,7 @@ card-content {
 
 @media screen and (min-width: 640px) {
     /*header*/
-    .c-header {
+    .c-header__inner {
         flex-direction: row;
         justify-content: space-between;
     }
