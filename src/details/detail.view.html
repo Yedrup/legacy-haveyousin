@@ -1,38 +1,38 @@
-<h2>Hello {{vm.message}}</h2>
+<h2>Hello {{detailCtrl.message}}</h2>
 <section class="c-details">
     <header class="c-detail__header">
-        <img ng-src="https://image.tmdb.org/t/p/w185/{{vm.type!='people'?vm.contentDetails.poster_path:vm.contentDetails.profile_path}}"
-            alt="{{vm.contentTitle}}">
+        <img ng-src="https://image.tmdb.org/t/p/w185/{{detailCtrl.type!='people'?detailCtrl.contentDetails.poster_path:detailCtrl.contentDetails.profile_path}}"
+            alt="{{detailCtrl.contentTitle}}">
 
         <div class="c-detail__header__text">
             <h1 class="c-detail__title">
-                {{vm.type==="people"? vm.contentDetails.name : vm.contentTitle}}
-                <span ng-if="vm.type !== 'people'">
-                    ({{vm.type==="serie"? vm.contentDetails.first_air_date : vm.type==="movie"? vm.contentDetails.release_date : ""| date:'yyyy'
+                {{detailCtrl.type==="people"? detailCtrl.contentDetails.name : detailCtrl.contentTitle}}
+                <span ng-if="detailCtrl.type !== 'people'">
+                    ({{detailCtrl.type==="tv"? detailCtrl.contentDetails.first_air_date : detailCtrl.type==="movie"? detailCtrl.contentDetails.release_date : ""| date:'yyyy'
                     }})
                 </span>
-                <span ng-if="(vm.type === 'people')">
-                    ({{vm.contentDetails.birthday === null ? "not specified" : vm.contentDetails.birthday | date:'yyyy'}}{{vm.contentDetails.deathday === null ? "" : " - " +  (vm.contentDetails.deathday | date:'yyyy') }})
+                <span ng-if="(detailCtrl.type === 'people')">
+                    ({{detailCtrl.contentDetails.birthday === null ? "not specified" : detailCtrl.contentDetails.birthday | date:'yyyy'}}{{detailCtrl.contentDetails.deathday === null ? "" : " - " +  (detailCtrl.contentDetails.deathday | date:'yyyy') }})
                 </span>
             </h1>
-            <p ng-if="vm.type === 'serie'"> Status: {{vm.contentDetails.in_production === true? "Still running" : "Ended"}} / {{vm.contentDetails.number_of_seasons}}
-                season{{vm.contentDetails.number_of_seasons>1 ? "s" :""}}
+            <p ng-if="detailCtrl.type === 'tv'"> Status: {{detailCtrl.contentDetails.in_production === true? "Still running" : "Ended"}} / {{detailCtrl.contentDetails.number_of_seasons}}
+                season{{detailCtrl.contentDetails.number_of_seasons>1 ? "s" :""}}
             </p>
             <p>
-                <a ng-if="vm.contentDetails.homepage" ng-href="{{vm.contentDetails.homepage}}">Official website : {{vm.contentDetails.homepage}}
+                <a ng-if="detailCtrl.contentDetails.homepage" ng-href="{{detailCtrl.contentDetails.homepage}}">Official website : {{detailCtrl.contentDetails.homepage}}
                 </a>
             </p>
-            <p>{{vm.type != "people" ? vm.contentDetails.overview : vm.contentDetails.biography}}</p>
+            <p>{{detailCtrl.type != "people" ? detailCtrl.contentDetails.overview : detailCtrl.contentDetails.biography}}</p>
 
-            <pannel class="c-pannel--details"></pannel>
+            <pannel ng-if="detailCtrl.type !== 'people'" content-type="{{detailCtrl.type}}" content-id="{{detailCtrl.contentId}}" class="c-pannel--details"></pannel>
         </div>
     </header>
 
-    <div ng-if="vm.type !== 'people'" class="c-cast">
+    <div ng-if="detailCtrl.type !== 'people' && detailCtrl.mainCharacters !== 0" class="c-cast">
         <h3>Main Characters</h3>
         <ul class="c-cast-main">
-            <li ng-repeat=" character in vm.mainCharacters" class="c-cast-main__item">
-                <a ng-href="#/details/people/{{character.id}}/{{character.name}}" class="c-thumbnail-wrap">
+            <li ng-repeat=" character in detailCtrl.mainCharacters" class="c-cast-main__item">
+                <a ui-sref="root.detailContent({type:'people',id:character.id, title:character.name})" class="c-thumbnail-wrap">
                     <article class="c-thumbnail--people">
                         <img ng-src="https://image.tmdb.org/t/p/w92{{character.profile_path}}" alt="{{character.character}}">
                         <p class="c-people__name c-people__name--character">
@@ -42,26 +42,24 @@
                 </a>
             </li>
         </ul>
-        <!-- if people know specfic ng-repeat + cards content -->
-        <div ng-if="vm.secondCharacters !=0">
+        <div ng-if="detailCtrl.secondCharacters !=0">
             <h4>Second charactors</h4>
             <ul class="c-cast__list">
-                <li class="c-cast__list__item" ng-repeat="character in vm.secondCharacters">
+                <li class="c-cast__list__item" ng-repeat="character in detailCtrl.secondCharacters">
                     <p class="c-people__name--text-only">{{character.character}}</p>
-                    <a ng-href="#/details/people/{{character.id}}/{{character.name}}" class="c-people__name--text-only">{{character.name}}
+                    <a ui-sref="root.detailContent({type:'people',id:character.id, title:character.name})" class="c-people__name--text-only">{{character.name}}
                     </a>
                 </li>
             </ul>
         </div>
     </div>
-
-    <div ng-if="vm.type === 'people'" class="c-cast">
+    <div ng-if="detailCtrl.type === 'people'" class="c-cast">
         <h3>Actoring</h3>
         <ul class="c-cast__list">
-            <li class="c-cast__list__item" ng-repeat="cast in      vm.actoringIn | orderBy : '-release_date'">
+            <li class="c-cast__list__item" ng-repeat="cast in      detailCtrl.actoringIn | orderBy : '-release_date'">
                 <p class="c-people__name--text-only">{{cast.release_date? cast.release_date : "____" | date:'yyyy' }}</p>
                 <i class="o-icon--white c-card__icon c-card__icon--type  fa fa-{{cast.media_type === 'tv' ? 'television' : 'film'}}" aria-hidden="true"></i>
-                <a ng-href="#/details/{{cast.media_type === 'tv'? 'serie': 'movie'}}/{{cast.id}}/{{content.title}}">{{cast.title}}</a>
+                <a ui-sref="root.detailContent({type:cast.media_type === 'tv'? 'tv': 'movie',id:cast.id, title:cast.title})">{{cast.title}}</a>
                 <p class="c-people__name--text-only">{{cast.character}}</p>
             </li>
         </ul>

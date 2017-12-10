@@ -1,5 +1,8 @@
-<div class="c-card__pannel-icons">
-    <i ng-if="vm.type != 'people'" class="c-card__icon c-card__icon--to-watch fa fa-list" aria-hidden="true"></i>
-    <i ng-if="vm.type != 'people'" class="c-card__icon c-card__icon--done fa fa-check" aria-hidden="true"></i>
-    <i class="c-card__icon c-card__icon--favorite fa fa-heart" aria-hidden="true"></i>
+<div  class="c-card__pannel-icons">
+    <i ng-click="pannelCtrl.listChangement('watchlist',contentId,contentType)" ng-if="vm.type != 'people'" class="c-card__icon c-card__icon--to-watch fa fa-list" aria-hidden="true" title="add to watchlist" ></i>
+
+    <i ng-click="pannelCtrl.listChangement('archive',contentId,contentType)" ng-if="vm.type != 'people'" class="c-card__icon c-card__icon--done fa fa-check" aria-hidden="true" title="add to archive"></i>
+
+    <i ng-click="pannelCtrl.listChangement('favorites',contentId,contentType)" class="c-card__icon c-card__icon--favorite fa fa-heart" aria-hidden="true" title="add to favorite and archive"></i>
 </div>
+<!-- <p>supposé texte : {{pannelCtrl.contentId}}</p> -->

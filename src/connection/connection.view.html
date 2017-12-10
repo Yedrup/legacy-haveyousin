@@ -1,0 +1,22 @@
+    <div class="c-connect-wrap" >
+    <h3 ng-if="vm.isUserConnected === false">How to connect?</h3>
+
+    <ul class="c-items--connexion" ng-if="vm.isUserConnected === false">
+        <li ng-if=" vm.accessResponse.success !== true" class="c-item--connexion">
+            <p class="c-item__message">1rst : Connect to The movie database website (opened in a new tab of your browser).
+            </p>
+            <a ng-click="vm.createAccount()"  target="_blank" class="ng-class:vm.messageButtonConnectTmdbClass">{{vm.messageButtonConnectTmdb}}</a>
+        </li>
+        <li ng-if="vm.temporaryTokenStatus===true && vm.accessResponse.success !== true" class="c-item--connexion">
+            <p class="c-item__message">2nd : Click to connect to HaveYouSin</p>
+            <a ng-click="vm.confirmCreation()"  class="btn waves-effect waves-light c-button--connect-steps">{{vm.messageButtonConnect}}</a>
+        </li>
+    </ul>
+
+    <div class="c-connect-wrap" ng-if="vm.isUserConnected === true">
+        <p>You're now connected! And ready to Enjoy the app!</p>
+        <a class="btn waves-effect waves-light c-button--connect" ui-sref="root.home">Go to home</a>
+        <presentation-app class="c-presentation"></presentation-app>
+    </div>
+</div>
+

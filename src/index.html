@@ -10,28 +10,8 @@
 </head>
 
 <body ng-app="haveYouSin">
-    <header-custom class="c-header"></header-custom>
-    <nav class="nav-wrapper c-nav">
-        <ul class="c-nav__items">
-            <li>
-                <a ui-sref="home" class="c-nav__item" ui-sref-active=" c-nav__item--active">Home</a>
-            </li>
-            <li>
-                <a ui-sref="hello" class="c-nav__item" ui-sref-active="c-nav__item--active">To watch list</a>
-            </li>
-            <li>
-                <a ui-sref="hello" class="c-nav__item" ui-sref-active=" c-nav__item--active">Calendar</a>
-            </li>
-            <li>
-                <a ui-sref="hello" class="c-nav__item" ui-sref-active="c-nav__item--active">Favorites</a>
-            </li>
-            <li>
-                <a ui-sref="hello" ui-sref-active="c-nav__item--active" class="c-nav__item">Archives</a>
-            </li>
-        </ul>
-    </nav>
-    <main class="c-main" ui-view></main>
-
+    <header class="c-header" ui-view="header"></header>
+    <main class="c-main" ui-view="container"></main>
     <footer class="c-footer">
 
     </footer>

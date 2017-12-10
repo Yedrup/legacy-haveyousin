@@ -1,7 +1,7 @@
-function HomeController(tmdbService) {
-    const vm = this;
-
-    console.log(vm.cardLimit);
+function HomeController(tmdbService, currentUserService) {
+    var vm = this;
+    vm.isUserConnected = currentUserService.isUserConnected();
+    
 
     vm.getSuggestionsTV = function () {
         tmdbService
@@ -20,9 +20,9 @@ function HomeController(tmdbService) {
                 }
                 vm.suggestionTV = vm.keyChange(vm.suggestionTVOrigin, vm.suggestionTV, 'name', 'title');
                 vm.suggestionTV = vm.keyChange(vm.suggestionTVOrigin, vm.suggestionTV, 'first_air_date', 'release_date');
-                vm.suggestionTV.map(obj => obj.typeContent = "serie");
+                vm.suggestionTV.map(obj => obj.typeContent = "tv");
                 vm.suggestionTV.map(obj => obj.icon = "television");       
-                console.log(vm.suggestionTV);
+                // console.log(vm.suggestionTV);
                 vm.suggestionTV.cardLimit = 5;
                 
                 return vm.suggestionTV;
@@ -35,15 +35,11 @@ function HomeController(tmdbService) {
             .discoverMovie()
             .then(function (response) {
                 vm.suggestionMovie = response;
-                vm.icon ="film";                          
                 vm.suggestionMovie.map(obj => obj.typeContent = "movie");
                 vm.suggestionMovie.map(obj => obj.icon = "film");
-                console.log(vm.suggestionMovie);   
+                // console.log(vm.suggestionMovie);   
                 vm.suggestionMovie.cardLimit = 5;
-                
                 return vm.suggestionMovie;
-                
-                
             });
     }();
 

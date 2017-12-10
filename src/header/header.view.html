@@ -1,0 +1,50 @@
+<p> userConnected: {{headerCtrl.isUserConnected}}</p> 
+<!-- <p> userAccountId: {{headerCtrl.userAccountId}} </p>
+<p>{{headerCtrl.userToken}} </p> -->
+
+<div class="c-header__connect">
+    <a ng-if='headerCtrl.isUserConnected === true' class="btn waves-effect waves-light c-button--disconnect" ng-click="headerCtrl.disconnect()">Disconnect</a>
+    <a ng-show='headerCtrl.isUserConnected !== true' class="btn waves-effect waves-light c-button--connect" ui-sref="root.connection" href="http://localhost:9000/#/connection" >Go to connect page</a>
+</div>
+<header class="c-header__inner">
+    <h2 class="c-logo c-logo--header" ui-sref="root.home">HaveYouSin?</h2>
+    <form ng-if='headerCtrl.isUserConnected === true' class="c-form">
+        <div class="input-field c-wrap-field--search">
+            <input type="search" ng-model='headerCtrl.query' ng-change='headerCtrl.search()' ng-model-options='{ debounce: 500 }' class="c-field" name='search'
+                placeholder="Search a movie, a serie, an actor" />
+            <i class="fa fa-window-close c-close" ng-if="headerCtrl.query.length>0" ng-click="headerCtrl.query = '' " aria-hidden="true"></i>
+            <div ng-show="headerCtrl.query" class="c-results-wrap">
+                <ul class="c-results">
+                    <li>{{headerCtrl.query}}</li>
+                    <li class="c-result-wrap" ng-repeat="result in headerCtrl.results">
+                        <a ui-sref="root.detailContent({type:result.typeContent,id:result.id, title:result.title})" ng-click="headerCtrl.query = '' " class="c-result">
+                            <i class="o-icon--white fa fa-{{result.icon}}" aria-hidden="true"></i>
+                            <p class="c-result__info">{{result.title}}</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</header>
+<nav class="nav-wrapper c-nav">
+        <ul class="c-nav__items">
+            <li>
+                <a ui-sref="root.home" class="c-nav__item" ui-sref-active=" c-nav__item--active">Home</a>
+            </li>
+            <li>
+                <!-- root.list/{{headerCtrl.namelist = watchlist}}"  -->
+                <!-- ng-click="$state.go('root.list',{namelist:watchlist})"" -->
+                <a ui-sref ="root.list({namelist:headerCtrl.watchlist.name, id:headerCtrl.watchlist.id})"   class="c-nav__item" ui-sref-active="c-nav__item--active">To watchlist</a>
+            </li>
+            <li>
+                <a ui-sref="root.list({namelist:headerCtrl.favorites.name, id:headerCtrl.favorites.id})" class="c-nav__item" ui-sref-active=" c-nav__item--active">Calendar</a>
+            </li>
+            <li>
+                <a ui-sref="root.list({namelist:headerCtrl.favorites.name, id:headerCtrl.favorites.id})" class="c-nav__item" ui-sref-active="c-nav__item--active">Favorites</a>
+            </li>
+            <li>
+                <a ui-sref="root.list({namelist:headerCtrl.archive.name, id:headerCtrl.archive.id})" ui-sref-active="c-nav__item--active" class="c-nav__item">Archive</a>
+            </li>
+        </ul>
+    </nav>

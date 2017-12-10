@@ -1,0 +1,22 @@
+<h1>View de {{vm.listname}}</h1>
+<div class="card-content">
+    <article ng-repeat="content in vm.content | limitTo: vm.content.cardLimit" class="c-card card ">
+        <div class="c-card__header c-card__header--delete">
+            <a ng-click="vm.removeItemFromList(vm.listname,content.id, content.typeContent)" class="c-card__link--delete"> 
+                <i class="c-card__icon c-card__icon--delete fa fa-times-circle" aria-hidden="true"></i>
+            </a>
+        </div>
+        <a ng-href="#/details/{{content.typeContent}}/{{content.id}}/{{content.title}}" class="c-card__link">
+            <header class="c-card__header">
+                <h2 class="c-card__title">{{content.title| limitTo:20}}</h2>
+                <p class="c-card__date">{{content.release_date | date:'yyyy' }}</p>
+            </header>
+            <img class="c-card__image" ng-src=https://image.tmdb.org/t/p/w185/{{content.poster_path}}>
+        </a>
+        <footer class="c-card__footer">
+            <i class="o-icon--black c-card__icon c-card__icon--type  fa fa-{{content.icon}}" aria-hidden="true"></i>
+            <pannel content-type="{{content.typeContent}}" content-id="{{content.id}}" class="c-pannel"></pannel>
+        </footer>
+    </article>
+
+</div>

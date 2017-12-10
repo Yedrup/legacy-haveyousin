@@ -1,23 +1,99 @@
+/***Presentation**/
+.c-presentation {
+    background-color: rgb(16, 16, 16);
+    color: #777777;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+.c-presentation p {
+    margin: .25rem 0; 
+    text-align: center;
+}
+.c-presentation-item--hilight {
+    font-weight: bold; 
+    color: #debb00;
+}
+.c-presentation__item {
+    margin-bottom: 1rem;
+}
+
+.c-presentation .c-card__icon {
+    margin-right: 1rem;
+}
+/**connect**/
+
+.c-connect-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: white;
+}
+
+.c-items--connexion {
+    width: 90%
+}
+
+.c-item--connexion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.c-item__message {
+    align-self: flex-start;
+}
+
+.c-button--connect,
+.c-button--connect-steps {
+    width: 80%;
+    font-size: .68rem;
+    font-weight: bold;
+    background-color: rgb(255, 215, 0);
+    color: #545654;
+    padding: 0;
+}
+
+.c-button--disconnect {
+    background-color: #e53935;
+}
+
+.c-button--connect:not(first-of-type) {
+    margin-right: 1rem;
+}
+
+.c-button--connect:hover,
+.c-button--connected {
+    background-color: #00bfa5;
+    color: #FFE;
+}
+
+
 /**header**/
 
 .c-header {
     background-color: #191919;
-    padding: 1rem;
     width: 100%;
     color: grey;
 }
 
 .c-header__connect {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     width: 100%;
 }
+
 .c-header__inner {
     display: flex;
     flex-direction: column;
     align-content: center;
     justify-content: space-around;
-    background-color: #191919;
     width: 100%;
     color: grey;
 }
@@ -27,8 +103,12 @@
     display: flex;
     justify-content: center;
 }
-
-
+.c-logo--header {
+    margin-left: .5rem;    
+}
+.c-logo--presentation {
+ font-size: 2rem;
+}
 /**search**/
 
 .c-form {
@@ -75,24 +155,29 @@ input[type=search].c-field {
     top: 2.1rem;
     left: 0;
     right: 0;
-    background: rgba(10,12,10, 0.97);
+    background: rgba(10, 12, 10, 0.97);
     height: auto;
-    border: 1px solid rgba(255,215,0,.2);
+    border: 1px solid rgba(255, 215, 0, .2);
     z-index: 100;
 }
+
 ul.c-results {
     padding: 0 .5rem;
 }
 
-.c-result-wrap{
+.c-result-wrap {
     display: flex;
 }
-.c-result{
+
+.c-result {
     display: flex;
-}  
-.c-result__info{
+}
+
+.c-result__info {
     margin: 0 .25rem;
 }
+
+
 /**nav**/
 
 .c-nav {
@@ -157,7 +242,8 @@ ul.c-results {
     font-size: 1.5rem;
 }
 
-card-content {
+card-content,
+.card-content {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -171,9 +257,21 @@ card-content {
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     color: #EEE;
     width: 12rem;
+    min-height: 18.6rem;
+    background: grey;
+    z-index: 1;
+}
+
+.c-card:before {
+    content: 'no image available';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
 }
 
 .c-card__link {
@@ -188,6 +286,27 @@ card-content {
     justify-content: space-between;
 }
 
+.c-card__header--delete {
+    background-color: #212121;
+    justify-content: flex-end;
+    min-height: 1.5rem;
+}
+.c-card__link--delete:hover .c-card__icon--delete {
+    color:#ffd700;
+    font-size: 1.15rem
+} 
+.c-card__link--delete {
+    width: 2rem;
+    display: flex;
+    justify-content: flex-end;
+}
+.c-card__icon--delete {
+    color:grey;
+    font-size: 1rem;
+    margin-right: .15rem;
+}
+
+
 .c-card__title,
 .c-card__date {
     margin: .05rem;
@@ -197,6 +316,7 @@ card-content {
 
 .c-card__image {
     max-width: 100%;
+    z-index: 4;
 }
 
 .c-card__footer {
@@ -221,15 +341,20 @@ card-content {
     color: grey;
 }
 
+
+
+
 .c-pannel {
     display: flex;
     justify-content: space-around;
     width: 50%;
 }
+
 .c-pannel--details {
     width: 16rem;
     display: flex;
 }
+
 .c-card__pannel-icons {
     display: flex;
     justify-content: space-between;
@@ -248,7 +373,9 @@ card-content {
 .c-card__icon--done {
     color: #00bfa5;
 }
-
+.c-icon--search {
+    color: #1b7ab1;
+}
 .c-card__icon--favorite {
     color: #e53935;
 }
@@ -372,7 +499,33 @@ card-content {
 /**Media queries**/
 
 @media screen and (min-width: 640px) {
+    /***Presentation**/
+.c-presentation {
+    width: 60%;
+    margin: 1rem;
+}
+    /**connect**/
+    .c-connect-wrap {
+        justify-content: flex-end;
+    }
+    .c-items--connexion {
+        width: 70%;
+    }
+    .c-button--connect-steps {
+        width: 90%;
+        font-size: 1rem;
+    }
+    .c-button--connect {
+        width: 20%;
+    }
+    .c-button--connect-steps,
+    .c-button--connect {
+        font-size: 1rem;
+    }
     /*header*/
+    .c-header__connect {
+        justify-content: flex-end;
+    }
     .c-header__inner {
         flex-direction: row;
         justify-content: space-between;
@@ -406,9 +559,19 @@ card-content {
     .c-pannel--details {
         width: 15rem;
     }
+    /**card**/
+    .c-card {
+        margin-right: 1rem;
+    }
 }
 
 @media screen and (min-width: 1024px) {
+    .c-presentation {
+        width: 55%;
+    }
+    .c-items--connexion {
+        width: 50%;
+    }
     .c-form {
         width: 30%;
     }

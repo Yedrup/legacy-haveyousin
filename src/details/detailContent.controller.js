@@ -1,11 +1,19 @@
-function detailContentController($stateParams, tmdbService) {
+function detailContentController($stateParams, tmdbService,currentUserService) {
   var vm = this;
   var id = $stateParams.id;
+  vm.contentId = $stateParams.id;
   vm.type = $stateParams.type;
   vm.contentTitle = $stateParams.title;
-
+  vm.reload = function(){
+    $state.reload();
+}
   vm.init = function () {
-    if (vm.type === "serie") {
+    vm.isUserConnected = currentUserService.isUserConnected();
+    vm.userToken = currentUserService.getUserdata().userAccountToken;
+    vm.userAccountId = currentUserService.getUserdata().userAccountId;
+    
+
+    if (vm.type === "tv") {
       tmdbService
         .getDetailsTV(id, 'credits,videos')
         .then(function (response) {
@@ -13,8 +21,11 @@ function detailContentController($stateParams, tmdbService) {
           vm.contentDetails = response;
           vm.mainCharacters = vm.contentDetails.credits.cast.splice(0, 9);
           vm.secondCharacters = vm.contentDetails.credits.cast.splice(0, vm.contentDetails.credits.cast.length);
-          console.log(vm.mainCharacters);
           console.log(vm.contentDetails);
+          
+          // console.log(vm.mainCharacters);
+          // console.log(vm.contentDetails);
+
         });
     } else if (vm.type === "movie") {
       tmdbService
@@ -47,20 +58,19 @@ function detailContentController($stateParams, tmdbService) {
           vm.actoringOrigin = vm.contentDetails.combined_credits.cast;
           vm.actoringIn = vm.keyChange(vm.actoringOrigin, vm.actoringIn, 'first_air_date', 'release_date');
           vm.actoringIn = vm.keyChange(vm.actoringOrigin, vm.actoringIn, 'name', 'title');
-          console.log(vm.actoringIn);
-          console.log(vm.contentDetails);
+          // console.log(vm.actoringIn);
+          // console.log(vm.contentDetails);
           
         });
 
     }
 
 
-  }
+  }();
 
 
 
 
-  vm.init();
 
   console.log("details of the id " + id + " , title: " + vm.contentTitle)
 

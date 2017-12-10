@@ -1,21 +1,21 @@
-<!-- <p>{{vm.name}}</p> -->
+<div ng-if="homeCtrl.isUserConnected">
+    <div class="c-section-wrap">
+        <h1 class="c-section__title--home">There is {{vm.suggestionTV.length}} tv suggestions for you!</h1>
+        <a href="list lien"> voir plus</a>
 
-<div class="c-section-wrap">
-    <h1 class="c-section__title--home">There is {{vm.suggestionTV.length}} tv suggestions for you!</h1>
-    <a href=""> voir plus</a>
+        <card-content data="homeCtrl.suggestionTV"></card-content>
+    </div>
 
-    <card-content data="vm.suggestionTV"></card-content>
+    <div class="c-section-wrap">
+        <h1 class="c-section__title--home">There is {{vm.suggestionMovie.length}} movie suggestions for you!</h1>
+        <a> voir plus</a>
+        <!-- // ui-sref ="root.list({namelist:'suggestion', id:''})" -->
+        <card-content data="homeCtrl.suggestionMovie"></card-content>
+    </div>
+    <div class="c-section-wrap">
+        <h1 class="c-section__title--home">There is {{vm.suggestionMovie.length}} movie suggestions for you!</h1>
+        <a href="list lien"> voir plus</a>
+        <card-content data="homeCtrl.suggestionMovie"></card-content>
+    </div>
 </div>
-
-<div class="c-section-wrap">
-    <h1 class="c-section__title--home">There is {{vm.suggestionMovie.length}} movie suggestions for you!</h1>
-    <a href=""> voir plus</a>
-
-    <card-content data="vm.suggestionMovie"></card-content>
-</div>
-<div class="c-section-wrap">
-    <h1 class="c-section__title--home">There is {{vm.suggestionMovie.length}} movie suggestions for you!</h1>
-    <a href=""> voir plus</a>
-
-    <card-content data="vm.suggestionMovie"></card-content>
-</div>
+<presentation-app ng-if='!homeCtrl.isUserConnected' class="c-presentation"></presentation-app>
