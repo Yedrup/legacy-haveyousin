@@ -26,11 +26,11 @@ function listController(tmdbService, currentUserService,listsService, $statePara
 
     vm.removeItemFromList = function(typeList, currentItemType, currentItemId) {
         if (typeList === 'watchlist') {
-            var listToUpdateId = listsService.getListsInfo().watchlist.id;
+            var listToUpdateId = listsService.getListsInfo().watchlist().id;
         } else if (typeList === 'favorites') {
-            var listToUpdateId = listsService.getListsInfo().favorites.id;
+            var listToUpdateId = listsService.getListsInfo().favorites().id;
         } else if (typeList === 'archive') {
-            var listToUpdateId = listsService.getListsInfo().archive.id;
+            var listToUpdateId = listsService.getListsInfo().archive().id;
         }
         tmdbService
         .removeItem(listToUpdateId, currentItemType, currentItemId, vm.userToken)
@@ -40,8 +40,6 @@ function listController(tmdbService, currentUserService,listsService, $statePara
             vm.reload();
         })
     }
-
-
 
     vm.init = function () {
         tmdbService

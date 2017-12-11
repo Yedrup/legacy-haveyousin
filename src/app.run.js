@@ -1,5 +1,6 @@
-function run($stateParams, $state,currentUserService, $location, $trace, $transition) {
+function run($stateParams, $state,currentUserService, $location, $trace, $transition, $rootScope) {
     console.log('en direct du run');
+    $rootScope.initializedLists = false;
     var userId = localStorage.getItem("userId");
     if (!userId) {
         $state.go('connection');
@@ -11,7 +12,7 @@ function run($stateParams, $state,currentUserService, $location, $trace, $transi
 
 }
 
-run.$inject = ['$stateParams', '$state','currentUserService', '$location', '$trace', '$transitions'];
+run.$inject = ['$stateParams', '$state','currentUserService', '$location', '$trace', '$transitions','$rootScope'];
 
 export default run
 

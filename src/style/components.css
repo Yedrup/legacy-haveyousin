@@ -87,6 +87,7 @@
     display: flex;
     justify-content: center;
     width: 100%;
+    
 }
 
 .c-header__inner {
@@ -95,7 +96,7 @@
     align-content: center;
     justify-content: space-around;
     width: 100%;
-    color: grey;
+    color: grey;    
 }
 
 .c-logo {
@@ -103,19 +104,26 @@
     display: flex;
     justify-content: center;
 }
-.c-logo--header {
-    margin-left: .5rem;    
-}
+
 .c-logo--presentation {
  font-size: 2rem;
 }
 /**search**/
 
-.c-form {
+/* .c-form {
     display: flex;
     align-items: center;
     width: 100%;
+} */
+
+
+.c-form {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
 }
+
 
 .c-wrap-field--search {
     position: relative;
@@ -123,6 +131,7 @@
     align-items: center;
     height: 2rem;
     width: 100%;
+    justify-content: flex-end;
 }
 
 .c-wrap-field--search:after {
@@ -139,6 +148,7 @@ input[type=search].c-field {
     margin: 0;
     height: 100%;
     position: relative;
+    padding-left: 2rem;
 }
 
 .c-close {
@@ -146,8 +156,9 @@ input[type=search].c-field {
     height: 2rem;
     align-items: center;
     position: absolute;
-    left: -1.5rem;
+    left: 0rem;
     bottom: 0;
+    padding: .5rem;
 }
 
 .c-results-wrap {
@@ -193,8 +204,8 @@ ul.c-results {
 }
 
 .c-nav__item {
-    padding: 0 .15rem;
     white-space: nowrap;
+    height: 100%;
 }
 
 .c-nav__item--active {
@@ -517,6 +528,7 @@ card-content,
     }
     .c-button--connect {
         width: 20%;
+        margin-bottom: 1rem;
     }
     .c-button--connect-steps,
     .c-button--connect {
@@ -525,11 +537,18 @@ card-content,
     /*header*/
     .c-header__connect {
         justify-content: flex-end;
+        padding: 0 1rem;        
+        
     }
     .c-header__inner {
         flex-direction: row;
         justify-content: space-between;
+        padding: 0 1rem;        
+        
     }
+
+
+
     .c-form {
         width: 40%;
     }

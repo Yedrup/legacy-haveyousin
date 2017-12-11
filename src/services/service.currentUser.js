@@ -1,10 +1,10 @@
-function currentUserService() {
+function currentUserService($window) {
 
     var getAllDatas = {
         isUserConnected: function () {
-            var userId = localStorage.getItem("userId");
-            var userToken = localStorage.getItem("token");
-            if (userId && localStorage.key("userId")) {
+            var userId = $window.localStorage.getItem("userId");
+            var userToken = $window.localStorage.getItem("token");
+            if (userId && $window.localStorage.key("userId")) {
                 return true;
             } else {
                 return false
@@ -13,13 +13,13 @@ function currentUserService() {
         setProfile: function (userId, userToken) {
             var userId = userId;
             var userToken = userToken;
-            localStorage.setItem("userId", userId);
-            localStorage.setItem("token", userToken);
+            $window.localStorage.setItem("userId", userId);
+            $window.localStorage.setItem("token", userToken);
         },
         getUserdata: function () {
-            var userId = localStorage.getItem("userId");
-            var userToken = localStorage.getItem("token");
-            if (userId && localStorage.key("userId")) {
+            var userId = $window.localStorage.getItem("userId");
+            var userToken = $window.localStorage.getItem("token");
+            if (userId && $window.localStorage.key("userId")) {
                 var userInfos = {
                     userAccountId: userId,
                     userAccountToken: userToken,

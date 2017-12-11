@@ -4,7 +4,6 @@ function PannelController($stateParams, $state, tmdbService, listsService, curre
     pannel.reload = function(){
         $state.reload();
     }
-    pannel.userToken = currentUserService.getUserdata().userAccountToken;
 
     // console.log(detailCtrl);
 
@@ -25,49 +24,57 @@ function PannelController($stateParams, $state, tmdbService, listsService, curre
 
 // console.log(pannel.contentId);
 
-    pannel.listChangement = function (typeList, currentItemType, currentItemId) {
+    pannel.listChangement = function (typeList, currentItemType, currentItemId) 
+    {
+
+
+        var userToken = currentUserService.getUserdata().userAccountToken;
+        var userId = currentUserService.getUserdata().userAccountId;
+
+        console.log(typeList);
+        
         if (typeList === 'watchlist') {
-            var listToUpdateId = listsService.getListsInfo().watchlist.id;
-            var secondaryListInvolvedId =  listsService.getListsInfo().favorites.id;
-            var terceraryListInvolvedId =  listsService.getListsInfo().archive.id;
+            var listToUpdateId = listsService.getListsInfo().watchlist().id;
+            var secondaryListInvolvedId =  listsService.getListsInfo().favorites().id;
+            var terceraryListInvolvedId =  listsService.getListsInfo().archive().id;
 
             
             tmdbService
-            .addItem(listToUpdateId, currentItemType, currentItemId, pannel.userToken)
+            .addItem(listToUpdateId, currentItemType, currentItemId, userToken)
             .then(function (response) {
                 console.log(response);
             })
             tmdbService
-            .removeItem(secondaryListInvolvedId, currentItemType, currentItemId, pannel.userToken)
+            .removeItem(secondaryListInvolvedId, currentItemType, currentItemId, userToken)
             .then(function (response) {
                 console.log(response);
             })
             tmdbService
-            .removeItem(terceraryListInvolvedId, currentItemType, currentItemId, pannel.userToken)
+            .removeItem(terceraryListInvolvedId, currentItemType, currentItemId, userToken)
             .then(function (response) {
                 console.log(response);
             }).finally(function() {
                 pannel.reload();
             })
         } else if (typeList === 'favorites') {
-            var listToUpdateId = listsService.getListsInfo().favorites.id;
-            var secondaryListInvolvedId =  listsService.getListsInfo().watchlist.id;
-            var terceraryListInvolvedId =  listsService.getListsInfo().archive.id;
+            var listToUpdateId = listsService.getListsInfo().favorites().id;
+            var secondaryListInvolvedId =  listsService.getListsInfo().watchlist().id;
+            var terceraryListInvolvedId =  listsService.getListsInfo().archive().id;
             //le map sera ici pour renvoyer true false si item deja dans liste. S'il y est retirer de favoris seulement, s'il n'y est pas : mettre dans vu et dans favoris
             //sans conditions : retirer watchlist
 
             tmdbService
-            .addItem(listToUpdateId, currentItemType, currentItemId, pannel.userToken)
+            .addItem(listToUpdateId, currentItemType, currentItemId, userToken)
             .then(function (response) {
                 console.log(response);
             })
             tmdbService
-            .removeItem(secondaryListInvolvedId, currentItemType, currentItemId, pannel.userToken)
+            .removeItem(secondaryListInvolvedId, currentItemType, currentItemId, userToken)
             .then(function (response) {
                 console.log(response);
             })
             tmdbService
-            .addItem(terceraryListInvolvedId, currentItemType, currentItemId, pannel.userToken)
+            .addItem(terceraryListInvolvedId, currentItemType, currentItemId, userToken)
             .then(function (response) {
                 console.log(response);
             }).finally(function() {
@@ -75,19 +82,19 @@ function PannelController($stateParams, $state, tmdbService, listsService, curre
             })
 
         } else if (typeList === 'archive') {
-            var listToUpdateId = listsService.getListsInfo().archive.id;
-            var secondaryListInvolvedId =  listsService.getListsInfo().watchlist.id;
+            var listToUpdateId = listsService.getListsInfo().archive().id;
+            var secondaryListInvolvedId =  listsService.getListsInfo().watchlist().id;
             
             //le map sera ici pour renvoyer true false si item deja dans liste. S'il y est retirer de favoris et archives, s'il n'y est pas : mettre dans archive
             //sans conditions : retirer watchlist
 
             tmdbService
-            .addItem(listToUpdateId, currentItemType, currentItemId, pannel.userToken)
+            .addItem(listToUpdateId, currentItemType, currentItemId, userToken)
             .then(function (response) {
                 console.log(response);
             })
             tmdbService
-            .removeItem(secondaryListInvolvedId, currentItemType, currentItemId, pannel.userToken)
+            .removeItem(secondaryListInvolvedId, currentItemType, currentItemId, userToken)
             .then(function (response) {
                 console.log(response);
             }).finally(function() {
@@ -103,7 +110,7 @@ function PannelController($stateParams, $state, tmdbService, listsService, curre
         //     pannel.returnIdAndType(pannel.contentInfoForPannel)
         
         // tmdbService
-              //     .addItem(listToUpdateId, currentItemType, currentItemId, pannel.userToken)
+              //     .addItem(listToUpdateId, currentItemType, currentItemId, userToken)
               //     .then(function (response) {
               //         console.log(response);
               //     })      

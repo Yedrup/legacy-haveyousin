@@ -67,7 +67,7 @@ function config($stateProvider, $locationProvider, $urlRouterProvider, $sceDeleg
                 'container@': {
                     templateUrl: 'src/connection/connection.view.html',
                     controller: 'connectionController',
-                    controllerAs: 'vm'
+                    controllerAs: 'connectionCtrl',
                 }
             }
         })

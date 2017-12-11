@@ -1,10 +1,10 @@
 function HeaderController(tmdbService, $window, currentUserService, listsService, $stateParams, $state) {
     var vm = this;
+    vm.watchlist = listsService.getListsInfo().watchlist();
+    vm.favorites = listsService.getListsInfo().favorites();
+    vm.archive = listsService.getListsInfo().archive();
+    vm.calendar = listsService.getListsInfo().calendar();
     vm.temporaryToken;
-    vm.watchlist = listsService.getListsInfo().watchlist;
-    vm.calendar = "calendar";
-    vm.favorites = listsService.getListsInfo().favorites;
-    vm.archive = listsService.getListsInfo().archive;
     var userToken = currentUserService.getUserdata().userAccountToken;
     vm.isUserConnected = currentUserService.isUserConnected();
     vm.userToken = currentUserService.getUserdata().userAccountToken;
@@ -12,9 +12,8 @@ function HeaderController(tmdbService, $window, currentUserService, listsService
     // console.log(currentUserService);
     console.log(currentUserService.isUserConnected());
     console.log(currentUserService.getUserdata().userAccountId);
-    console.log(vm.userToken);
     console.log(userToken);
-    console.log(listsService.getListsInfo());
+    console.log(listsService.getListsInfo().watchlist());
 
     vm.reload = function () {
         $state.reload('root');
@@ -55,7 +54,7 @@ function HeaderController(tmdbService, $window, currentUserService, listsService
     };
 
     vm.disconnect = function () {
-        var token = localStorage.getItem("token");        
+        var token = localStorage.getItem("token");
         tmdbService
             .disconnectUser(token)
             .then(function (response) {
@@ -68,11 +67,12 @@ function HeaderController(tmdbService, $window, currentUserService, listsService
                 currentUserService.getUserdata();
                 vm.responseError = response;
                 console.log('plan de secours');
-                localStorage.removeItem("userId");
-                localStorage.removeItem("token");
-                localStorage.removeItem("watchlist");
-                localStorage.removeItem("favorites");
-                localStorage.removeItem("archive");
+                $window.localStorage.removeItem("userId");
+                $window.localStorage.removeItem("token");
+                $window.localStorage.removeItem("watchlist");
+                $window.localStorage.removeItem("favorites");
+                $window.localStorage.removeItem("archive");
+                $window.localStorage.removeItem("calendar");
             })
             .finally(function () {
                 vm.reload();
