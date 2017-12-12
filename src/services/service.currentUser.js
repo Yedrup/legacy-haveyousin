@@ -1,46 +1,29 @@
-function currentUserService($window) {
+function currentUserService($window, $rootScope) {
 
     var getAllDatas = {
         isUserConnected: function () {
-            var userId = $window.localStorage.getItem("userId");
-            var userToken = $window.localStorage.getItem("token");
-            if (userId && $window.localStorage.key("userId")) {
+            if ($rootScope.userDatas !== null) {
                 return true;
             } else {
                 return false
             }
-        },
-        setProfile: function (userId, userToken) {
-            var userId = userId;
-            var userToken = userToken;
-            $window.localStorage.setItem("userId", userId);
-            $window.localStorage.setItem("token", userToken);
-        },
-        getUserdata: function () {
-            var userId = $window.localStorage.getItem("userId");
-            var userToken = $window.localStorage.getItem("token");
-            if (userId && $window.localStorage.key("userId")) {
-                var userInfos = {
-                    userAccountId: userId,
-                    userAccountToken: userToken,
-                }
-                return userInfos;
-            } else {
-                return "user is not connected"
-            }
 
-        }
+        },
+
+        SetUserInfosInLocalStorage: function (nameKey, object) {
+           return $window.localStorage.setItem(nameKey, JSON.stringify(object));
+        },
+        GetUserInfosFromLocalStorage: function (nameKeyOject) {
+            return JSON.parse($window.localStorage.getItem(nameKeyOject));
+        },
+
 
     }
     return getAllDatas
 }
 
 
-// currentUserService.$inject = [];
+currentUserService.$inject = ['$window', '$rootScope'];
 
 export default currentUserService
 
-
-// this.$watch('isUserConnected', function(newVal, oldVal){
-//     console.log('changed');
-// }, true);

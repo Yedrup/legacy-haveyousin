@@ -11,12 +11,18 @@
     <h2 class="c-logo c-logo--header" ui-sref="root.home">HaveYouSin?</h2>
     <form ng-if='headerCtrl.isUserConnected === true' class="c-form">
         <div class="input-field c-wrap-field--search">
-            <input type="search" ng-model='headerCtrl.query' ng-change='headerCtrl.search()' ng-model-options='{ debounce: 500 }' class="c-field"
-                name='search' placeholder="Search a movie, a serie, an actor" />
+            <input 
+            type="search" 
+            ng-model='headerCtrl.query' 
+            ng-change='headerCtrl.search()' 
+            ng-model-options='{ debounce: 500 }' 
+            class="c-field"
+            name='search' placeholder="Search a movie, a serie, an actor" autocomplete="off" 
+            />
             <i class="fa fa-window-close c-close" ng-if="headerCtrl.query.length>0" ng-click="headerCtrl.query = '' " aria-hidden="true"></i>
             <div ng-show="headerCtrl.query" class="c-results-wrap">
                 <ul class="c-results">
-                    <li>{{headerCtrl.query}}</li>
+                    <li ng-if="headerCtrl.query.length>0 && headerCtrl.results <= 0"> No sins with that name :(</li>
                     <li class="c-result-wrap" ng-repeat="result in headerCtrl.results">
                         <a ui-sref="root.detailContent({type:result.typeContent,id:result.id, title:result.title})" ng-click="headerCtrl.query = '' "
                             class="c-result">
@@ -40,28 +46,28 @@
         <li>
             <!-- root.list/{{headerCtrl.namelist = watchlist}}"  -->
             <!-- ng-click="$state.go('root.list',{namelist:watchlist})"" -->
-            <a ui-sref="root.list({namelist:headerCtrl.watchlist.name, id:headerCtrl.watchlist.id})" class="c-nav__item" ui-sref-active="c-nav__item--active">
+            <a ui-sref="root.list({namelist:headerCtrl.watchlistName, id:userDatas.listId.watchlist})" class="c-nav__item" ui-sref-active="c-nav__item--active">
                 <i class="c-card__icon fa fa-list" aria-hidden="true">
                 </i>
                 <span class="hide-on-small-only">To watchlist</span>
             </a>
         </li>
         <li>
-            <a ui-sref="root.list({namelist:headerCtrl.favorites.name, id:headerCtrl.favorites.id})" class="c-nav__item" ui-sref-active=" c-nav__item--active">
+            <a ui-sref="root.calendar" class="c-nav__item" ui-sref-active=" c-nav__item--active">
                 <i class="c-card__icon  fa fa-calendar" aria-hidden="true">
                 </i>
                 <span class="hide-on-small-only">Calendar</span>
             </a>
         </li>
         <li>
-            <a ui-sref="root.list({namelist:headerCtrl.archive.name, id:headerCtrl.archive.id})" ui-sref-active="c-nav__item--active"
+            <a ui-sref="root.list({namelist:headerCtrl.archiveName, id:userDatas.listId.archive})" ui-sref-active="c-nav__item--active"
                 class="c-nav__item">
                 <i class="c-card__icon  fa fa-check" aria-hidden="true"></i>
                 <span class="hide-on-small-only">Archive</span>
             </a>
         </li>
         <li>
-            <a ui-sref="root.list({namelist:headerCtrl.favorites.name, id:headerCtrl.favorites.id})" class="c-nav__item" ui-sref-active="c-nav__item--active">
+            <a ui-sref="root.list({namelist:headerCtrl.favoritesName, id:userDatas.listId.favorites})" class="c-nav__item" ui-sref-active="c-nav__item--active">
                 <i class="c-card__icon  fa fa-heart" aria-hidden="true"></i>
                 <span class="hide-on-small-only">Favorites</span>
             </a>

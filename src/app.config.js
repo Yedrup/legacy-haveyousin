@@ -12,7 +12,7 @@ function config($stateProvider, $locationProvider, $urlRouterProvider, $sceDeleg
     $stateProvider
         .state('root', {
             url: '',
-            abstract: true,
+            abstract: false,
             views: {
                 'header@': {
                     templateUrl: 'src/header/header.view.html',
@@ -24,6 +24,9 @@ function config($stateProvider, $locationProvider, $urlRouterProvider, $sceDeleg
                 //     templateUrl: 'footer.html',
                 //     controller: 'FooterCtrl'
                 // }
+            },
+            params: {
+                private: false
             }
         })
         .state({
@@ -36,17 +39,8 @@ function config($stateProvider, $locationProvider, $urlRouterProvider, $sceDeleg
                     controllerAs: 'detailCtrl',
                 }
             },
-            resolve: {
-                loginRequired: ['$q', '$state', '$timeout', function ($q, $state, $timeout) {
-                    var userId = localStorage.getItem("userId"); 
-                    if (!userId) 
-                    {
-                        $timeout(function () {
-                            $state.go('root.connection');
-                        });
-                        return $q.reject('User not logged in. Redirecting to connection page.');
-                    }
-                }]
+            params: {
+                private: true
             }
         })
         .state({
@@ -58,6 +52,9 @@ function config($stateProvider, $locationProvider, $urlRouterProvider, $sceDeleg
                     controller: 'HomeController',
                     controllerAs: 'homeCtrl',
                 }
+            },
+            params: {
+                private: false
             }
         })
         .state({
@@ -69,6 +66,9 @@ function config($stateProvider, $locationProvider, $urlRouterProvider, $sceDeleg
                     controller: 'connectionController',
                     controllerAs: 'connectionCtrl',
                 }
+            },
+            params: {
+                private: false
             }
         })
         .state({
@@ -81,6 +81,23 @@ function config($stateProvider, $locationProvider, $urlRouterProvider, $sceDeleg
                     controller: 'listController',
                     controllerAs: 'vm'
                 }
+            },
+            params: {
+                private: true
+            }
+        })
+        .state({
+            name: 'root.calendar',
+            url: '/calendar', 
+            views: {
+                'container@': {
+                    templateUrl: 'src/calendar/calendar.view.html',
+                    controller: 'CalendarController',
+                    controllerAs: 'calendarCtrl'
+                }
+            },
+            params: {
+                private: true
             }
         })
 

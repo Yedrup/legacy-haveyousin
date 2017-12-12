@@ -1,4 +1,4 @@
-function detailContentController($stateParams, tmdbService,currentUserService) {
+function detailContentController($stateParams, tmdbService,currentUserService, $rootScope) {
   var vm = this;
   var id = $stateParams.id;
   vm.contentId = $stateParams.id;
@@ -9,8 +9,7 @@ function detailContentController($stateParams, tmdbService,currentUserService) {
 }
   vm.init = function () {
     vm.isUserConnected = currentUserService.isUserConnected();
-    vm.userToken = currentUserService.getUserdata().userAccountToken;
-    vm.userAccountId = currentUserService.getUserdata().userAccountId;
+    // event.preventDefault();
     
 
     if (vm.type === "tv") {

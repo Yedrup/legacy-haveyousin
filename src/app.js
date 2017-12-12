@@ -22,6 +22,7 @@ import listController from './list/list.controller.js'
 import CardContentController from './directives/cards/CardContent.controller.js'
 import PannelController from './directives/pannel/pannel.controller.js'
 import HeaderController from './header/header.controller.js'
+import CalendarController from './calendar/calendar.controller.js'
 
 var app = angular.module('haveYouSin', ['ui.router']);
 
@@ -45,6 +46,7 @@ app.controller('connectionController', connectionController);
 app.controller('PannelController', PannelController);
 app.controller('HeaderController', HeaderController);
 app.controller('listController', listController);
+app.controller('CalendarController', CalendarController);
 
 
 

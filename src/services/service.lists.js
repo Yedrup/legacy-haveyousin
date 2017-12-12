@@ -1,89 +1,70 @@
-function listsService(tmdbService, currentUserService, $q, $window, $rootScope, $state,$timeout) {
-    // var isUserConnected = currentUserService.isUserConnected();
-    // var userToken = currentUserService.getUserdata().userAccountToken;
-    // var userAccountId = currentUserService.getUserdata().userAccountId;
-    
+function listsService(tmdbService, currentUserService, $q, $window, $state, $timeout, $rootScope) {
 
     function reloadRoot() {
         $state.reload('root');
     }
     var getListService = function () {
-
         var listService = {
             SetObjectInLocalStorage: function (nameKey, object) {
                 $window.localStorage.setItem(nameKey, JSON.stringify(object));
             },
-            initListService : function () {
-                return getListService;
-            },
-            getListsInfo: function () {
-                var lists = {
-                    watchlist: function () {
-                        return JSON.parse($window.localStorage.getItem("watchlist"));
-                    },
-                    favorites: function () {
-                        return JSON.parse($window.localStorage.getItem("favorites"));
-                    },
-                    archive: function () {
-                        return JSON.parse($window.localStorage.getItem("archive"));
-                    },
-                    calendar: function () {
-                        return JSON.parse($window.localStorage.getItem("calendar"));
-                    },
-                }
-                return lists
-            },
+
             createListIfNotExists: function (arrayListFromApi, listName, userId, userToken) {
                 var isListExists = arrayListFromApi.some(list => list.name === listName);
                 if (isListExists === false) {
-                    tmdbService
+                    return tmdbService
                         .createList(listName, userToken)
                         .then(function (response) {
                             console.log(response);
                             console.log(listName + ' created');
-                        })
+                            return response;
+                        });
                 } else {
                     console.log(listName + "already exists");
+                    // return "toto";
                 }
             },
-            setLists: function (userAccountId,userToken) {
-                var userToken = userToken;
-                var userAccountId = userAccountId; 
-                var lists = [];
-                tmdbService
+            setLists: function () {
+                var userToken = $rootScope.userDatas.userToken;
+                var userAccountId = $rootScope.userDatas.userId;
+                var listsBeforeSetting = [];
+                return tmdbService
                     .getAllLists(userAccountId)
                     .then(function (response) {
                         console.log(response);
-                        lists = response;
-                    }).then(function () {
-                        getListService.createListIfNotExists(lists, "watchlist", userAccountId, userToken);
-                        getListService.createListIfNotExists(lists, "favorites", userAccountId, userToken);
-                        getListService.createListIfNotExists(lists, "archive", userAccountId, userToken);
-                        getListService.createListIfNotExists(lists, "calendar", userAccountId, userToken);
-                    }).then(function() {
-                        tmdbService
-                        .getAllLists(userAccountId)
-                        .then(function (response) {
-                            var lists = response;                 
-                             return lists;
-                        }).then(function() {
-                            lists.map(obj => getListService.SetObjectInLocalStorage(obj.name, obj));
-                        }) .finally(function () {
-                            $window.location.reload();                                                      
-                        })
-                        
+                        listsBeforeSetting = response;
+                        return listsBeforeSetting;
+                    }).then(function (response) {
+                        return Promise.all([
+                            getListService.createListIfNotExists(listsBeforeSetting, "watchlist", userAccountId, userToken),
+                            getListService.createListIfNotExists(listsBeforeSetting, "favorites", userAccountId, userToken),
+                            getListService.createListIfNotExists(listsBeforeSetting, "archive", userAccountId, userToken),
+                            getListService.createListIfNotExists(listsBeforeSetting, "calendar", userAccountId, userToken)
+                        ]);
                     })
+                    .then(function() {
+                        tmdbService.getAllLists(userAccountId)
+                            .then(function (response) {
+                                console.log("tmdbService.getAllList a renvoyé", response);
+                                var lists = response;
+                                var userList = lists.reduce(function (obj, item) {
+                                    var listName = item.name.replace(" ", "");
+                                    obj[listName] = item.id;
+                                    return obj;
+                                }, {});
+                                $rootScope.userDatas.listId = userList;
+                                return $rootScope.userDatas.listId ;
 
+                            }).then(function (response) {
+                                currentUserService.SetUserInfosInLocalStorage("$rootScope.userDatas", $rootScope.userDatas);
+                                console.log($rootScope.userDatas.listId);
+                                console.log($rootScope.userDatas.listId.archive);
+                                console.log($rootScope.userDatas);
+
+                            })
+                        });
             },
-            // storeListInStorage: function () {
-                
-                        
-            //              return lists;
-                        
-            //         })
-                    // .then(function () {
-            //         // })
-            // }
+
         }
         return listService
 
@@ -93,58 +74,7 @@ function listsService(tmdbService, currentUserService, $q, $window, $rootScope, 
 }
 
 
-// currentUserService.$inject = [];
+listsService.$inject = ['tmdbService', 'currentUserService', '$q', '$window', '$state', '$timeout', '$rootScope'];
 
 export default listsService
 
-
-// listsService.SetObjectInLocalStorage("watchlist", response)
-
-// var isWatchlist = lists.some(list => list.name === "watchlist");
-// var isFavoritesList = lists.some(list => list.name === "favorites");
-// var isArchiveList = lists.some(list => list.name === "archive");
-// var isCalendarList = lists.some(list => list.name === "calendar");
-// console.log(isWatchlist);
-// console.log(isFavoritesList);
-// console.log(isArchiveList);
-// console.log(isCalendarList);
-
-// if (!isWatchlist || !isFavoritesList || !isArchiveList || !isCalendarList) {
-//     $rootScope.initializedLists = false;
-//     console.log($rootScope.initializedLists);
-// } else {
-//     $rootScope.initializedLists = true;
-//     console.log($rootScope.initializedLists);
-// }
-
-// if (!isWatchlist) {
-//     tmdbService
-//         .createList("watchlist", userToken)
-//         .then(function (response) {
-//             console.log('watchlist createds');
-//         })
-// }
-// if (!isFavoritesList) {
-//     tmdbService
-//         .createList("favorites", userToken)
-//         .then(function (response) {
-
-//             console.log('favorite createds');
-//         })
-// }
-// if (!isArchiveList) {
-//     tmdbService
-//         .createList("archive", userToken)
-//         .then(function (response) {
-//             console.log('archive createds');
-//         })
-// }
-// if (!isCalendarList) {
-//     tmdbService
-//         .createList("calendar", userToken)
-//         .then(function (response) {
-//             console.log('calendar createds');
-//         })
-// }
-
-// return $rootScope.initializedLists;

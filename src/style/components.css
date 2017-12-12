@@ -1,4 +1,5 @@
 /***Presentation**/
+
 .c-presentation {
     background-color: rgb(16, 16, 16);
     color: #777777;
@@ -10,13 +11,15 @@
 }
 
 .c-presentation p {
-    margin: .25rem 0; 
+    margin: .25rem 0;
     text-align: center;
 }
+
 .c-presentation-item--hilight {
-    font-weight: bold; 
+    font-weight: bold;
     color: #debb00;
 }
+
 .c-presentation__item {
     margin-bottom: 1rem;
 }
@@ -24,6 +27,8 @@
 .c-presentation .c-card__icon {
     margin-right: 1rem;
 }
+
+
 /**connect**/
 
 .c-connect-wrap {
@@ -87,7 +92,6 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    
 }
 
 .c-header__inner {
@@ -96,7 +100,7 @@
     align-content: center;
     justify-content: space-around;
     width: 100%;
-    color: grey;    
+    color: grey;
 }
 
 .c-logo {
@@ -106,9 +110,12 @@
 }
 
 .c-logo--presentation {
- font-size: 2rem;
+    font-size: 2rem;
 }
+
+
 /**search**/
+
 
 /* .c-form {
     display: flex;
@@ -116,14 +123,12 @@
     width: 100%;
 } */
 
-
 .c-form {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     width: 100%;
 }
-
 
 .c-wrap-field--search {
     position: relative;
@@ -138,7 +143,7 @@
     content: "\f002";
     font-family: FontAwesome;
     position: absolute;
-    color: #CCC;
+    color: #7199b1;
     font-size: 1.5rem;
     bottom: 0;
     right: 0;
@@ -176,6 +181,7 @@ ul.c-results {
     padding: 0 .5rem;
 }
 
+
 .c-result-wrap {
     display: flex;
 }
@@ -186,6 +192,15 @@ ul.c-results {
 
 .c-result__info {
     margin: 0 .25rem;
+}
+
+
+/**list**/
+
+.c-list__title {
+    color: #FFE;
+    text-transform: capitalize;
+    font-size: .9rem;
 }
 
 
@@ -302,21 +317,23 @@ card-content,
     justify-content: flex-end;
     min-height: 1.5rem;
 }
+
 .c-card__link--delete:hover .c-card__icon--delete {
-    color:#ffd700;
+    color: #ffd700;
     font-size: 1.15rem
-} 
+}
+
 .c-card__link--delete {
     width: 2rem;
     display: flex;
     justify-content: flex-end;
 }
+
 .c-card__icon--delete {
-    color:grey;
+    color: grey;
     font-size: 1rem;
     margin-right: .15rem;
 }
-
 
 .c-card__title,
 .c-card__date {
@@ -352,9 +369,6 @@ card-content,
     color: grey;
 }
 
-
-
-
 .c-pannel {
     display: flex;
     justify-content: space-around;
@@ -384,9 +398,11 @@ card-content,
 .c-card__icon--done {
     color: #00bfa5;
 }
+
 .c-icon--search {
     color: #1b7ab1;
 }
+
 .c-card__icon--favorite {
     color: #e53935;
 }
@@ -480,7 +496,7 @@ card-content,
     width: 9rem;
     height: auto;
     min-height: 15rem;
-    background-color: lightblue;
+    background-color: #79776d;
     border: 1px solid black;
 }
 
@@ -511,10 +527,10 @@ card-content,
 
 @media screen and (min-width: 640px) {
     /***Presentation**/
-.c-presentation {
-    width: 60%;
-    margin: 1rem;
-}
+    .c-presentation {
+        width: 60%;
+        margin: 1rem;
+    }
     /**connect**/
     .c-connect-wrap {
         justify-content: flex-end;
@@ -534,21 +550,22 @@ card-content,
     .c-button--connect {
         font-size: 1rem;
     }
+    /**list**/
+    .c-list__title {
+        color: #FFE;
+        text-transform: capitalize;
+        font-size: 2rem;
+    }
     /*header*/
     .c-header__connect {
         justify-content: flex-end;
-        padding: 0 1rem;        
-        
+        padding: 0 1rem;
     }
     .c-header__inner {
         flex-direction: row;
         justify-content: space-between;
-        padding: 0 1rem;        
-        
+        padding: 0 1rem;
     }
-
-
-
     .c-form {
         width: 40%;
     }

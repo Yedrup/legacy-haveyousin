@@ -1,7 +1,6 @@
-function CardContentController($stateParams,$state,tmdbService, $scope) {
+function CardContentController($stateParams,$state,tmdbService, $scope,$rootScope) {
     var vm = this;
 
-    vm.name = 'purdey';
 
 }
 

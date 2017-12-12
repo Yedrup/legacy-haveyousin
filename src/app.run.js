@@ -1,19 +1,70 @@
 function run($stateParams, $state,currentUserService, $location, $trace, $transition, $rootScope) {
     console.log('en direct du run');
-    $rootScope.initializedLists = false;
-    var userId = localStorage.getItem("userId");
-    if (!userId) {
-        $state.go('connection');
-        console.log('pas cooco');
+
+
+    // {
+    //     userId: null,
+    //     userToken: null,
+    //     listId : {
+    //         watchListId: null,
+    //         archivesListId: null,
+    //         favoritesListId: null
+    //     }
+    // }
+
+    // if ($rootScope.userDatas.userId === null || undefined) {
+    //     return true;
+    // } else {
+    //     return false
+    // }
+
+
+
+    var userId = localStorage.getItem("$rootScope.userDatas"); //if user (object) item $rootScope blabla
+    if (!userId) { //if pas user
+      $rootScope.userDatas = null;
+    } else {
+      $rootScope.userDatas = currentUserService.GetUserInfosFromLocalStorage("$rootScope.userDatas")
+     console.log("j'ai des datas dans mon storage");
+     console.log($rootScope.userDatas)
     }
+
+
+
+    if ($rootScope.userDatas) {
+        console.log('you re connected')
+        
+    } else {
+        console.log('you are disconnected')
+        
+    }
+
+    // Enregistrement d'un évènement pour le changement des states (pour vérifier si on est autorisé à en afficher certains)
+  $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+    if (toParams.private &&  $rootScope.userDatas === null) {
+      $state.go('root.connection');
+      event.preventDefault();
+    } else {
+      console.log('no problemo you can be there');
+    }
+  });
+    
+  
+//  {
+//       id: null,
+//       token: null,
+//       listId : {
+//           watchlistId: null,
+//           archiveslistId : null,
+//           favoriteslistId: null
+//       }
+//   }
+}
+
 
     // $trace.enable('TRANSITION');
 
-
-}
-
-run.$inject = ['$stateParams', '$state','currentUserService', '$location', '$trace', '$transitions','$rootScope'];
-
+run.$inject = ['$stateParams', '$state','currentUserService', '$location', '$trace', '$transitions','$rootScope']
 export default run
 
 

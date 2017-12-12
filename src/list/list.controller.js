@@ -1,17 +1,12 @@
-function listController(tmdbService, currentUserService,listsService, $stateParams, $state) {
+function listController(tmdbService, currentUserService,listsService, $stateParams, $state, $rootScope) {
     var vm = this;
     vm.listname = $stateParams.namelist;
     vm.listid = $stateParams.id;
     
     vm.isUserConnected = currentUserService.isUserConnected();
-    vm.userToken = currentUserService.getUserdata().userAccountToken;
-    vm.userAccountId = currentUserService.getUserdata().userAccountId;
 
-    // console.log('coucou listcontroller');
-    // console.log(vm.listname);
-    // console.log(vm.listid);
     vm.reload = function () {
-        $state.reload('root');
+        $state.reload($state.current);
     }
     vm.keyChange = function (arrayOrigin, arrayNew, keyOrigin, keyNew) {
         return arrayNew = arrayOrigin.map(function (item) {
@@ -24,16 +19,20 @@ function listController(tmdbService, currentUserService,listsService, $statePara
         });
     }
 
+
+    console.log($rootScope.userDatas.archive);
+    
+
     vm.removeItemFromList = function(typeList, currentItemType, currentItemId) {
         if (typeList === 'watchlist') {
-            var listToUpdateId = listsService.getListsInfo().watchlist().id;
+            var listToUpdateId = $rootScope.userDatas.listId.watchlist;
         } else if (typeList === 'favorites') {
-            var listToUpdateId = listsService.getListsInfo().favorites().id;
+            var listToUpdateId = $rootScope.userDatas.listId.favorites;
         } else if (typeList === 'archive') {
-            var listToUpdateId = listsService.getListsInfo().archive().id;
+            var listToUpdateId = $rootScope.userDatas.listId.archive;
         }
         tmdbService
-        .removeItem(listToUpdateId, currentItemType, currentItemId, vm.userToken)
+        .removeItem(listToUpdateId, currentItemType, currentItemId, $rootScope.userDatas.userToken)
         .then(function (response) {
             console.log(response)
         }).finally(function () {
