@@ -1,0 +1,123 @@
+/**Details**/
+
+.c-details {
+    width: 100%;
+    padding: 0;
+    color: #C0C0C0;
+}
+
+.c-detail__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.c-detail__header__text {
+    margin-left: 2rem;
+}
+
+.c-detail__title {
+    margin: 0;
+    font-size: 2rem;
+}
+
+
+/**cast**/
+
+.c-cast-main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.c-cast__list {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.c-cast__list__item {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin: .5rem;
+}
+
+.c-cast-main__item {
+    margin-bottom: 1rem;
+    margin-right: 0;
+}
+
+.c-cast__list__item>* {
+    margin-right: 0.6rem;
+}
+
+.c-people__name--text-only,
+.c-people__name--text-only {
+    display: flex;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.c-people__cast--date {
+    width: 10%
+}
+
+
+/**people**/
+
+.c-thumbnail-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+    width: 9rem;
+    height: auto;
+    min-height: 15rem;
+    background-color: #79776d;
+    border: 1px solid black;
+}
+
+.c-thumbnail--people {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.c-people__name {
+    margin: 0;
+}
+
+.c-people__name--character {
+    color: #454643;
+    font-size: .9rem;
+    font-weight: bold;
+}
+
+.c-people__name--people {
+    font-size: .8rem;
+    color: #142842;
+}
+
+@media screen and (min-width: 640px) {
+    /*detail*/
+    .c-cast-main {
+        justify-content: flex-start;
+    }
+    .c-detail__header {
+        flex-direction: row;
+            padding: 2rem 1rem;
+    }
+    .c-cast__list__item>* {
+        margin-right: 1rem;
+        margin-right: 0.6rem;
+    }
+    .c-cast-main__item {
+        margin-bottom: .25rem;
+        margin-right: .25rem;
+    }
+
+}

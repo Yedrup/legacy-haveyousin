@@ -1,6 +1,20 @@
-    <div class="c-section-wrap">
-        <h1 class="c-section__title--home">Calendar</h1>
-        <!-- <a href="list lien"> voir plus</a> -->
-        
+<h1 class="c-section__title">Calendar</h1>
+
+<div class="c-section__pannel">
+
+    <div class="c-pannel--calendar">
+        <i class="c-card__icon c-card__icon--type  fa fa-film c-pannel__icon" aria-hidden="true" ng-init="isIconMovieActive = true" ng-click="varReverse=''; isIconMovieActive = true; isIconTvActive = false;" ng-class="isIconMovieActive ?'o-icon--active' : 'o-icon--grey' "></i>
+        <i class=" c-card__icon c-card__icon--type  fa fa-television" ng-click="varReverse='c-section-wrap--reverse'; isIconMovieActive = false; isIconTvActive = true;" ng-class="isIconTvActive?'o-icon--active' : 'o-icon--grey' " aria-hidden="true"></i>
+    </div>
+</div>
+
+<div class="c-section-wrap" ng-class="varReverse">
+    <div>
+        <h4 class="c-section__title">Movies</h4>
         <card-content data="calendarCtrl.suggestionMovie"></card-content>
     </div>
+    <div>
+        <h4 class="c-section__title">TV shows</h4>
+        <card-content data="calendarCtrl.suggestionTV"></card-content>
+    </div>
+</div>

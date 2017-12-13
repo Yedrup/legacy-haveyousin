@@ -1,4 +1,3 @@
-<p>Hello {{detailCtrl.message}}</p>
 <section class="c-details">
     <header class="c-detail__header">
         <img ng-src="https://image.tmdb.org/t/p/w185/{{detailCtrl.type!='people'?detailCtrl.contentDetails.poster_path:detailCtrl.contentDetails.profile_path}}"
@@ -64,13 +63,4 @@
             </li>
         </ul>
     </div>
-    <!-- <div>
-        <h3>Bande annonce</h3>
-        <div class="video-container" controls ng-repeat="video in model.contentDetails.videos.results | filter:{name:'Official Trailer'}" ng-bind-html=youtubeIframe('{{video.key}}')>
-
-        </div>
-    </div> -->
 </section>
-
-<!-- <iframe type="video/mp4" width="640" height="385" data-ng-src="{{'https//www.youtube.com/embed/'+video.key}}" frameborder="0"></iframe> -->
-<!-- <source ng-src=https://www.youtube.com/watch?v={{video.key}} > -->

@@ -1,0 +1,28 @@
+/* icons */
+
+.o-icon--white {
+    color: #FFE;
+}
+
+.o-icon--black {
+    color: #001;
+}
+
+.o-icon--blue {
+    color: #1b7ab1;
+}
+
+.o-icon--grey {
+    color: grey;
+}
+
+.o-icon--active {
+    color: #ffd700;
+}
+
+
+/* links */
+
+.o-link--grey {
+    color: #a8a8a8;
+}

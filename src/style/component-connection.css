@@ -1,0 +1,77 @@
+/**connect**/
+
+.c-connect-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: white;
+}
+
+.c-items--connexion {
+    width: 90%
+}
+
+.c-item--connexion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.c-item__message {
+    align-self: flex-start;
+}
+
+.c-button--connect,
+.c-button--connect-steps {
+    width: 80%;
+    font-size: .68rem;
+    font-weight: bold;
+    background-color: rgb(255, 215, 0);
+    color: #545654;
+    padding: 0;
+}
+
+.c-button--disconnect {
+    background-color: #e53935;
+}
+
+.c-button--connect:not(first-of-type) {
+    margin-right: 1rem;
+}
+
+.c-button--connect:hover,
+.c-button--connected {
+    background-color: #00bfa5;
+    color: #FFE;
+}
+
+@media screen and (min-width: 640px) {
+    /**connect**/
+    .c-connect-wrap {
+        justify-content: flex-end;
+    }
+    .c-items--connexion {
+        width: 70%;
+    }
+    .c-button--connect-steps {
+        width: 90%;
+        font-size: 1rem;
+    }
+    .c-button--connect {
+        width: 20%;
+        margin-bottom: 1rem;
+    }
+    .c-button--connect-steps,
+    .c-button--connect {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .c-items--connexion {
+        width: 50%;
+    }
+}

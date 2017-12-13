@@ -1,4 +1,4 @@
-function HomeController(tmdbService, currentUserService) {
+function HomeController(tmdbService, currentUserService,listsService) {
     var vm = this;
     vm.isUserConnected = currentUserService.isUserConnected();
     
@@ -8,22 +8,11 @@ function HomeController(tmdbService, currentUserService) {
             .discoverTV()
             .then(function (response) {
                 vm.suggestionTVOrigin = response;
-                vm.keyChange = function (arrayOrigin, arrayNew, keyOrigin, keyNew) {
-                    return arrayNew = arrayOrigin.map(function (item) {
-                        if (keyOrigin in item) {
-                            var mem = item[keyOrigin];
-                            delete item[keyOrigin];
-                            item[keyNew] = mem;
-                        }
-                        return item;
-                    });
-                }
-                vm.suggestionTV = vm.keyChange(vm.suggestionTVOrigin, vm.suggestionTV, 'name', 'title');
-                vm.suggestionTV = vm.keyChange(vm.suggestionTVOrigin, vm.suggestionTV, 'first_air_date', 'release_date');
+                vm.suggestionTV = listsService.keyChange(vm.suggestionTVOrigin, vm.suggestionTV, 'name', 'title');
+                vm.suggestionTV = listsService.keyChange(vm.suggestionTVOrigin, vm.suggestionTV, 'first_air_date', 'release_date');
                 vm.suggestionTV.map(obj => obj.typeContent = "tv");
                 vm.suggestionTV.map(obj => obj.icon = "television");       
-                // console.log(vm.suggestionTV);
-                vm.suggestionTV.cardLimit = 5;
+                vm.suggestionTV.cardLimit = 8;
                 
                 return vm.suggestionTV;
             });
@@ -37,12 +26,34 @@ function HomeController(tmdbService, currentUserService) {
                 vm.suggestionMovie = response;
                 vm.suggestionMovie.map(obj => obj.typeContent = "movie");
                 vm.suggestionMovie.map(obj => obj.icon = "film");
-                // console.log(vm.suggestionMovie);   
-                vm.suggestionMovie.cardLimit = 5;
+                vm.suggestionMovie.cardLimit = 8;
                 return vm.suggestionMovie;
             });
     }();
+    
+    vm.getSuggestionsMovieByYear = function () {
+        tmdbService
+            .discoverMovieByYear("2016")
+            .then(function (response) {
+                vm.suggestionMovieByYear16 = response;
+                vm.suggestionMovieByYear16.map(obj => obj.typeContent = "movie");
+                vm.suggestionMovieByYear16.map(obj => obj.icon = "film");
+                vm.suggestionMovieByYear16.cardLimit = 8;
+                return vm.suggestionMovieByYear16;
+            });
+    }();
 
+    vm.getSuggestionsMovieByYear = function () {
+        tmdbService
+            .discoverMovieByYear("2015")
+            .then(function (response) {
+                vm.suggestionMovieByYear15 = response;
+                vm.suggestionMovieByYear15.map(obj => obj.typeContent = "movie");
+                vm.suggestionMovieByYear15.map(obj => obj.icon = "film");
+                vm.suggestionMovieByYear15.cardLimit = 8;
+                return vm.suggestionMovieByYear15;
+            });
+    }();
 
 }
 

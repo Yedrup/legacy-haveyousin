@@ -1,0 +1,43 @@
+/***Presentation**/
+
+.c-presentation {
+    background-color: rgb(16, 16, 16);
+    color: #777777;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+.c-presentation p {
+    margin: .25rem 0;
+    text-align: center;
+}
+
+.c-presentation-item--hilight {
+    font-weight: bold;
+    color: #debb00;
+}
+
+.c-presentation__item {
+    margin-bottom: 1rem;
+}
+
+.c-presentation .c-card__icon {
+    margin-right: 1rem;
+}
+
+@media screen and (min-width: 640px) {
+    /***Presentation**/
+    .c-presentation {
+        width: 60%;
+        margin: 1rem;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .c-presentation {
+        width: 55%;
+    }
+}

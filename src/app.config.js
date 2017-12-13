@@ -8,7 +8,6 @@ function config($stateProvider, $locationProvider, $urlRouterProvider, $sceDeleg
         'localhost:9000/**',
     ]);
 
-    //Routes
     $stateProvider
         .state('root', {
             url: '',
@@ -19,11 +18,6 @@ function config($stateProvider, $locationProvider, $urlRouterProvider, $sceDeleg
                     controller: 'HeaderController',
                     controllerAs: 'headerCtrl'
                 }
-                // ,
-                // 'footer': {
-                //     templateUrl: 'footer.html',
-                //     controller: 'FooterCtrl'
-                // }
             },
             params: {
                 private: false
@@ -73,8 +67,7 @@ function config($stateProvider, $locationProvider, $urlRouterProvider, $sceDeleg
         })
         .state({
             name: 'root.list',
-            url: '/list/:namelist/:id', //:id/:nameList
-
+            url: '/list/:namelist/:id', 
             views: {
                 'container@': {
                     templateUrl: 'src/list/list.view.html',

@@ -2,11 +2,9 @@ function HeaderController(tmdbService, $window, currentUserService, listsService
     var vm = this;
     vm.temporaryToken;
     vm.isUserConnected = currentUserService.isUserConnected();
-    console.log(vm.isUserConnected);
     vm.favoritesName = 'favorites';
     vm.watchlistName = 'watchlist';
     vm.archiveName = 'archive';
-    console.log($rootScope.userDatas.archive);
 
     vm.reload = function (state) {
         $state.reload(state);
@@ -29,18 +27,8 @@ function HeaderController(tmdbService, $window, currentUserService, listsService
                             obj.icon = "user";
                         }
                     });
-                    vm.keyChange = function (arrayOrigin, arrayNew, keyOrigin, keyNew) {
-                        return arrayNew = arrayOrigin.map(function (item) {
-                            if (keyOrigin in item) {
-                                var mem = item[keyOrigin];
-                                delete item[keyOrigin];
-                                item[keyNew] = mem;
-                            }
-                            return item;
-                        });
-                    }
-                    vm.resultsOrigin = vm.keyChange(vm.resultsOrigin, vm.results, 'name', 'title');
-                    vm.results = vm.keyChange(vm.resultsOrigin, vm.results, 'first_air_date', 'release_date');
+                    vm.resultsOrigin = listsService.keyChange(vm.resultsOrigin, vm.results, 'name', 'title');
+                    vm.results = listsService.keyChange(vm.resultsOrigin, vm.results, 'first_air_date', 'release_date');
                 })
         }
     };
@@ -49,12 +37,9 @@ function HeaderController(tmdbService, $window, currentUserService, listsService
         tmdbService
             .disconnectUser($rootScope.userDatas.userToken)
             .then(function (response) {
-                console.log(response);
-                console.log("GREAT GAME BORDEL")
             })
             .catch(function onError(response) {
                 vm.responseError = response;
-                console.log('plan de secours');
                 $window.localStorage.removeItem("$rootScope.userDatas");
                 $rootScope.userDatas = null;
             })
@@ -63,7 +48,6 @@ function HeaderController(tmdbService, $window, currentUserService, listsService
                 $state.go('root.connection');   
                 event.preventDefault();                
                 vm.reload();
-                
             })
     }
 

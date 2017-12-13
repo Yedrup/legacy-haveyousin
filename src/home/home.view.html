@@ -1,21 +1,17 @@
 <div ng-if="homeCtrl.isUserConnected">
     <div class="c-section-wrap">
-        <h1 class="c-section__title--home">There is {{vm.suggestionTV.length}} tv suggestions for you!</h1>
-        <a href="list lien"> voir plus</a>
+        <h1 class="c-section__title">TV suggestions for you!</h1>
         <card-content data="homeCtrl.suggestionTV"></card-content>
     </div>
 
     <div class="c-section-wrap">
-        <h1 class="c-section__title--home">There is {{vm.suggestionMovie.length}} movie suggestions for you!</h1>
-        <a> voir plus</a>
-        <!-- // ui-sref ="root.list({namelist:'suggestion', id:''})" -->
-        <card-content data="homeCtrl.suggestionMovie"></card-content>
+        <h1 class="c-section__title">Popular Movies in 2016</h1>
+        <card-content data="homeCtrl.suggestionMovieByYear16"></card-content>
     </div>
     <div class="c-section-wrap">
-        <h1 class="c-section__title--home">There is {{vm.suggestionMovie.length}} movie suggestions for you!</h1>
-        <a href="list lien"> voir plus</a>
-        <card-content data="homeCtrl.suggestionMovie"></card-content>
+        <h1 class="c-section__title">Popular Movies in 2015</h1>
+        <card-content data="homeCtrl.suggestionMovieByYear15"></card-content>
     </div>
 </div>
-<presentation-app ng-if='!homeCtrl.isUserConnected' class="c-presentation"></presentation-app>
+<presentation-app  class="c-presentation"></presentation-app>
 <a ng-show='!homeCtrl.isUserConnected' class="btn waves-effect waves-light c-button--connect" ui-sref="root.connection" href="http://localhost:9000/#/connection" >Go to connect page</a>

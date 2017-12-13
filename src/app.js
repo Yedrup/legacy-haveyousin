@@ -68,10 +68,6 @@ app.directive("pannel", function () {
         templateUrl: "src/directives/pannel/pannel.view.html",
         restrict: "E",
         require: ['^cardContent, ^detailContentController'],                
-        // bindToController: {
-        //     contentId: '=contentId',
-        //     contentType: '=contentType'
-        // },
         scope: {
             contentId: "@",
             contentType: "@",            
@@ -87,11 +83,3 @@ app.directive("presentationApp", function () {
 
     };
 });
-// app.directive("headerCustom", function () {
-//     return {
-//         templateUrl: "src/directives/header/header.view.html",
-//         restrict: "E",
-//         controller: 'HeaderController',
-//         controllerAs: 'headerCtrl'
-//     };
-// });

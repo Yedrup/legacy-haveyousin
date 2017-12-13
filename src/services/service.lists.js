@@ -1,4 +1,4 @@
-function listsService(tmdbService, currentUserService, $q, $window, $state, $timeout, $rootScope) {
+function listsService(tmdbService, currentUserService,$window, $state, $rootScope) {
 
     function reloadRoot() {
         $state.reload('root');
@@ -8,21 +8,25 @@ function listsService(tmdbService, currentUserService, $q, $window, $state, $tim
             SetObjectInLocalStorage: function (nameKey, object) {
                 $window.localStorage.setItem(nameKey, JSON.stringify(object));
             },
-
             createListIfNotExists: function (arrayListFromApi, listName, userId, userToken) {
                 var isListExists = arrayListFromApi.some(list => list.name === listName);
                 if (isListExists === false) {
                     return tmdbService
                         .createList(listName, userToken)
                         .then(function (response) {
-                            console.log(response);
-                            console.log(listName + ' created');
                             return response;
                         });
-                } else {
-                    console.log(listName + "already exists");
-                    // return "toto";
                 }
+            },
+            keyChange: function (arrayOrigin, arrayNew, keyOrigin, keyNew) {
+                return arrayNew = arrayOrigin.map(function (item) {
+                    if (keyOrigin in item) {
+                        var mem = item[keyOrigin];
+                        delete item[keyOrigin];
+                        item[keyNew] = mem;
+                    }
+                    return item;
+                });
             },
             setLists: function () {
                 var userToken = $rootScope.userDatas.userToken;
@@ -31,7 +35,6 @@ function listsService(tmdbService, currentUserService, $q, $window, $state, $tim
                 return tmdbService
                     .getAllLists(userAccountId)
                     .then(function (response) {
-                        console.log(response);
                         listsBeforeSetting = response;
                         return listsBeforeSetting;
                     }).then(function (response) {
@@ -42,10 +45,9 @@ function listsService(tmdbService, currentUserService, $q, $window, $state, $tim
                             getListService.createListIfNotExists(listsBeforeSetting, "calendar", userAccountId, userToken)
                         ]);
                     })
-                    .then(function() {
+                    .then(function () {
                         tmdbService.getAllLists(userAccountId)
                             .then(function (response) {
-                                console.log("tmdbService.getAllList a renvoyé", response);
                                 var lists = response;
                                 var userList = lists.reduce(function (obj, item) {
                                     var listName = item.name.replace(" ", "");
@@ -53,16 +55,12 @@ function listsService(tmdbService, currentUserService, $q, $window, $state, $tim
                                     return obj;
                                 }, {});
                                 $rootScope.userDatas.listId = userList;
-                                return $rootScope.userDatas.listId ;
+                                return $rootScope.userDatas.listId;
 
                             }).then(function (response) {
                                 currentUserService.SetUserInfosInLocalStorage("$rootScope.userDatas", $rootScope.userDatas);
-                                console.log($rootScope.userDatas.listId);
-                                console.log($rootScope.userDatas.listId.archive);
-                                console.log($rootScope.userDatas);
-
                             })
-                        });
+                    });
             },
 
         }
@@ -74,7 +72,6 @@ function listsService(tmdbService, currentUserService, $q, $window, $state, $tim
 }
 
 
-listsService.$inject = ['tmdbService', 'currentUserService', '$q', '$window', '$state', '$timeout', '$rootScope'];
+listsService.$inject = ['tmdbService', 'currentUserService','$window', '$state', '$rootScope'];
 
 export default listsService
-

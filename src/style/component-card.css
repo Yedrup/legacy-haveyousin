@@ -1,0 +1,159 @@
+/**card**/
+
+
+card-content,
+.card-content {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+
+.c-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    color: #EEE;
+    width: 12rem;
+    min-height: 18.6rem;
+    background: #151416;
+    z-index: 1;
+}
+
+.c-card:before {
+    content: 'no image available';
+    position: absolute;
+    top: 49%;
+    left: 63%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    width: 100%;
+}
+
+.c-card__link {
+    color: #EEE;
+}
+
+.c-card__header {
+    background-color: #111;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.c-card__header--delete {
+    background-color: #212121;
+    justify-content: flex-end;
+    min-height: 1.5rem;
+}
+
+.c-card__link--delete:hover .c-card__icon--delete {
+    color: #ffd700;
+    font-size: 1.15rem
+}
+
+.c-card__link--delete {
+    width: 2rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.c-card__icon--delete {
+    color: grey;
+    font-size: 1rem;
+    margin-right: .15rem;
+}
+
+.c-card__title,
+.c-card__date {
+    margin: .05rem;
+    font-size: .9rem;
+    font-weight: bold;
+}
+
+.c-card__image {
+    max-width: 100%;
+    z-index: 4;
+}
+
+.c-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-height: 2.5rem;
+    padding: 0 .25rem;
+    background-color: #EEE;
+}
+
+.c-card__icon {
+    font-size: 1.25rem;
+}
+
+.c-card__icon--default {
+    color: grey;
+}
+
+.c-pannel {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+}
+
+.c-pannel--details {
+    width: 16rem;
+    display: flex;
+}
+
+.c-card__pannel-icons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.c-card__icon--type {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.c-card__icon--to-watch {
+    color: grey;
+}
+
+.c-card__icon--done {
+    color: #00bfa5;
+}
+
+
+.c-card__icon--favorite {
+    color: #e53935;
+}
+
+
+
+
+
+
+@media screen and (min-width: 640px) {
+    /**Pannel**/
+    .c-pannel--details {
+        width: 15rem;
+    }
+    .c-pannel--calendar {
+        width: 20%;
+    }
+    
+    /**card**/
+    .c-card {
+        margin-right: 1rem;
+    }
+}
+
+

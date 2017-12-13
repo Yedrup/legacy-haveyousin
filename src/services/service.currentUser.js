@@ -7,23 +7,16 @@ function currentUserService($window, $rootScope) {
             } else {
                 return false
             }
-
         },
-
         SetUserInfosInLocalStorage: function (nameKey, object) {
-           return $window.localStorage.setItem(nameKey, JSON.stringify(object));
+            return $window.localStorage.setItem(nameKey, JSON.stringify(object));
         },
         GetUserInfosFromLocalStorage: function (nameKeyOject) {
             return JSON.parse($window.localStorage.getItem(nameKeyOject));
         },
-
-
     }
     return getAllDatas
 }
 
-
 currentUserService.$inject = ['$window', '$rootScope'];
-
 export default currentUserService
-

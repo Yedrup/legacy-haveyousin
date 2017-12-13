@@ -1,11 +1,9 @@
-<p> userConnected: {{headerCtrl.isUserConnected}}</p>
-<!-- <p> userAccountId: {{headerCtrl.userAccountId}} </p>
-<p>{{headerCtrl.userToken}} </p> -->
 
-<div class="c-header__connect">
+    <div class="c-header__connect">
+            <p ng-if="headerCtrl.isUserConnected" class="c-header__message--connected"> you're connected </p>
     <a ng-if='headerCtrl.isUserConnected === true' class="btn waves-effect waves-light c-button--disconnect" ng-click="headerCtrl.disconnect()">Disconnect</a>
-    <a ng-show='headerCtrl.isUserConnected !== true' class="btn waves-effect waves-light c-button--connect" ui-sref="root.connection"
-        href="http://localhost:9000/#/connection">Go to connect page</a>
+    <a ng-if='headerCtrl.isUserConnected !== true' class="btn waves-effect waves-light c-button--connect" ui-sref="root.connection"
+        href="http://localhost:9000/#/connection" ng-hide="$state.current.name === 'connection'" >Go to connect page</a>
 </div>
 <header class="c-header__inner">
     <h2 class="c-logo c-logo--header" ui-sref="root.home">HaveYouSin?</h2>
@@ -44,8 +42,6 @@
             </a>
         </li>
         <li>
-            <!-- root.list/{{headerCtrl.namelist = watchlist}}"  -->
-            <!-- ng-click="$state.go('root.list',{namelist:watchlist})"" -->
             <a ui-sref="root.list({namelist:headerCtrl.watchlistName, id:userDatas.listId.watchlist})" class="c-nav__item" ui-sref-active="c-nav__item--active">
                 <i class="c-card__icon fa fa-list" aria-hidden="true">
                 </i>
