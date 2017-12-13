@@ -19,7 +19,9 @@
     font-weight: bold;
     color: #debb00;
 }
-
+.c-icon--search:before {
+    color: #7199b1;
+}
 .c-presentation__item {
     margin-bottom: 1rem;
 }

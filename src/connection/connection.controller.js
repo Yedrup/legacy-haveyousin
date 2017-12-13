@@ -48,8 +48,6 @@ function connectionController($stateParams, $state, $window, currentUserService,
             }).finally(function () {
                 vm.reload('root');
             })
-
-
     }
 
 }
