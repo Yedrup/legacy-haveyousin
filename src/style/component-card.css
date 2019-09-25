@@ -6,7 +6,6 @@ card-content,
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-between;
 }
 
 
@@ -17,7 +16,7 @@ card-content,
     flex-direction: column;
     justify-content: flex-start;
     color: #EEE;
-    width: 12rem;
+    max-width: 15rem;
     min-height: 18.6rem;
     background: #151416;
     z-index: 1;

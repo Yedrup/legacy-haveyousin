@@ -1,6 +1,6 @@
-@import "../../node_modules/font-awesome/css/font-awesome.min.css";
+@import "~fontAwesome";
+@import "~materialize";
 @import 'objects.css';
-@import "../../node_modules/materialize-css/dist/css/materialize.min.css";
 @import "components-materialize-modified.css";
 @import "component-header.css";
 @import "component-card.css";

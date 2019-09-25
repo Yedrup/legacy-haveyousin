@@ -1,11 +1,18 @@
+'use strict';
+
 var path = require('path');
 var webpack = require("webpack");
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-
 module.exports = {
 
+  resolve: {
+    alias: {
+      materialize: path.join(__dirname, 'node_modules/materialize-css/dist/css/materialize.min.css'),
+      fontAwesome: path.join(__dirname, 'node_modules/font-awesome/css/font-awesome.min.css')
+    }
+  },
   devServer: {
     compress: true,
     port: 9000

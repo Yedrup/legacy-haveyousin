@@ -7,7 +7,8 @@ function config($stateProvider, $locationProvider, $urlRouterProvider, $sceDeleg
         'https://www.themoviedb.org/**',
         'localhost:9000/portfolio/playground/haveyousin/**',
         'localhost:8888/portfolio/playground/haveyousin/**',
-        'http://purdeychambraud.com/portfolio/playground/haveyousin/**'
+        'http://purdeychambraud.com/portfolio/playground/haveyousin/**',
+        'http://purdeychambraud.com/portfolio/legacy-haveyousin/**'
     ]);
 
     $stateProvider

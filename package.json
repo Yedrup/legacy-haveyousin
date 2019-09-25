@@ -1,12 +1,14 @@
 {
-  "name": "haveYouSin",
+  "name": "legacyhaveyousin",
   "version": "1.0.0",
-  "description": "haveYouSin is a web app on which you can create a to watch list with tv shows and movies using the movie database API v4(https://developers.themoviedb.org/4/getting-started). This app is built with angulars js (1.6), webpack 3.6, ui-router and materialize css framework",
+  "description": "LEGACY - haveYouSin is a web app on which you can create a to watch list with tv shows and movies using the movie database API v4(https://developers.themoviedb.org/4/getting-started). This app is built with angulars js (1.6), webpack 3.6, ui-router and materialize css framework. You can visit this legacy version here: https://purdeychambraud.com/legacy-haveyousin",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "devserver": "./node_modules/.bin/webpack-dev-server --devtool eval-cheap-module-source-map",
-    "dev": "./node_modules/.bin/webpack --watch"
+    "clean":"rm -rf dist",
+    "build": "npm run clean && webpack",
+    "serve": "webpack-dev-server --open --watch"
   },
   "author": "Purdey Chambraud",
   "license": "ISC",
