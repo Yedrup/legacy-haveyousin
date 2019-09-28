@@ -16,8 +16,9 @@ card-content,
     flex-direction: column;
     justify-content: flex-start;
     color: #EEE;
-    max-width: 15rem;
+    max-width: 10rem;
     min-height: 18.6rem;
+    margin-right: .5rem;
     background: #151416;
     z-index: 1;
 }
@@ -152,6 +153,7 @@ card-content,
     /**card**/
     .c-card {
         margin-right: 1rem;
+        max-width: 15rem;
     }
 }
 

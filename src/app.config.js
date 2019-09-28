@@ -1,14 +1,17 @@
 function config($stateProvider, $locationProvider, $urlRouterProvider, $sceDelegateProvider) {
+    //remove ! from utl
     $locationProvider.hashPrefix('')
+    const isProduction = process.env.NODE_ENV === 'production';
+    if(isProduction) $locationProvider.html5Mode(true); //remove # from url
+
     $sceDelegateProvider.resourceUrlWhitelist([
         'self',
         '*://api.themoviedb.org/**',
         'https://www.youtube.com/**',
         'https://www.themoviedb.org/**',
-        'localhost:9000/portfolio/playground/haveyousin/**',
-        'localhost:8888/portfolio/playground/haveyousin/**',
-        'http://purdeychambraud.com/portfolio/playground/haveyousin/**',
-        'http://purdeychambraud.com/portfolio/legacy-haveyousin/**'
+        'localhost:9000/**',
+        'localhost:8888/**',
+        "http://purdeychambraud.com/legacy-haveyousin/**"
     ]);
 
     $stateProvider
@@ -17,7 +20,7 @@ function config($stateProvider, $locationProvider, $urlRouterProvider, $sceDeleg
             abstract: false,
             views: {
                 'header@': {
-                    templateUrl: '../src/header/header.view.html',
+                    templateUrl: './src/header/header.view.html',
                     controller: 'HeaderController',
                     controllerAs: 'headerCtrl'
                 }
@@ -31,7 +34,7 @@ function config($stateProvider, $locationProvider, $urlRouterProvider, $sceDeleg
             url: '/details/:type/:id/:title',
             views: {
                 'container@': {
-                    templateUrl: '../src/details/detail.view.html',
+                    templateUrl: './src/details/detail.view.html',
                     controller: 'detailContentController',
                     controllerAs: 'detailCtrl',
                 }
@@ -45,7 +48,7 @@ function config($stateProvider, $locationProvider, $urlRouterProvider, $sceDeleg
             url: '/',
             views: {
                 'container@': {
-                    templateUrl: '../src/home/home.view.html',
+                    templateUrl: './src/home/home.view.html',
                     controller: 'HomeController',
                     controllerAs: 'homeCtrl',
                 }
@@ -59,7 +62,7 @@ function config($stateProvider, $locationProvider, $urlRouterProvider, $sceDeleg
             url: '/connection',
             views: {
                 'container@': {
-                    templateUrl: '../src/connection/connection.view.html',
+                    templateUrl: './src/connection/connection.view.html',
                     controller: 'connectionController',
                     controllerAs: 'connectionCtrl',
                 }
@@ -73,7 +76,7 @@ function config($stateProvider, $locationProvider, $urlRouterProvider, $sceDeleg
             url: '/list/:namelist/:id', 
             views: {
                 'container@': {
-                    templateUrl: '../src/list/list.view.html',
+                    templateUrl: './src/list/list.view.html',
                     controller: 'listController',
                     controllerAs: 'vm'
                 }
@@ -87,7 +90,7 @@ function config($stateProvider, $locationProvider, $urlRouterProvider, $sceDeleg
             url: '/calendar', 
             views: {
                 'container@': {
-                    templateUrl: '../src/calendar/calendar.view.html',
+                    templateUrl: './src/calendar/calendar.view.html',
                     controller: 'CalendarController',
                     controllerAs: 'calendarCtrl'
                 }
@@ -98,7 +101,6 @@ function config($stateProvider, $locationProvider, $urlRouterProvider, $sceDeleg
         })
 
     $urlRouterProvider.otherwise('/');
-
 }
 
 config.$inject = ['$stateProvider', '$locationProvider', '$urlRouterProvider', '$sceDelegateProvider']

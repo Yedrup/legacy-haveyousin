@@ -1,4 +1,6 @@
 function run($stateParams, $state,currentUserService, $location, $trace, $transition, $rootScope) {
+    $rootScope.isProduction = process.env.NODE_ENV === 'production';
+    $rootScope.environment = process.env.NODE_ENV;
     var userId = localStorage.getItem("$rootScope.userDatas"); 
     if (!userId) {
       $rootScope.userDatas = null;

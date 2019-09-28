@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <base href="<%= htmlWebpackPlugin.options.baseUrl %>"/> 
     <meta description="HaveYouSin is your tool to create a to watch list including movies and TV shows">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>haveYouSin?</title>
@@ -15,6 +17,7 @@
     <footer class="c-footer">
         <a class="o-link--grey" href="https://developers.themoviedb.org/3/getting-started/introduction" target="_blank"> Powered by the Movie Database API</a>
         <a class="o-link--grey" href="https://github.com/Yedrup" alt="This project on Github" target="_blank"><i class="fa fa-github-square fa-3x" aria-hidden="true" ></i></a>
+        <span ng-if="!isProduction">env : {{environment}}</span>
     </footer>
 </body>
 

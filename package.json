@@ -6,14 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "devserver": "./node_modules/.bin/webpack-dev-server --devtool eval-cheap-module-source-map",
-    "clean":"rm -rf dist",
-    "build": "npm run clean && webpack",
-    "serve": "webpack-dev-server --open --watch"
+    "clean": "rm -rf dist",
+    "build": "export NODE_ENV=production; npm run clean && webpack --define process.env.NODE_ENV='\"production\"'",
+    "serve": "export NODE_ENV=development; webpack-dev-server --define process.env.NODE_ENV='\"development\"' --open --watch ",
+    "serve-prod": "export NODE_ENV=production; webpack-dev-server --define process.env.NODE_ENV='\"production\"' --open --watch "
   },
   "author": "Purdey Chambraud",
   "license": "ISC",
   "dependencies": {
-    "@babel/core": "^7.0.0-beta.34",
+    "@babel/core": "^7.6.2",
     "@babel/preset-env": "^7.0.0-beta.34",
     "@uirouter/angularjs": "^1.0.8",
     "angular": "^1.6.6",
@@ -21,6 +22,7 @@
     "babel-loader": "^8.0.0-beta.0",
     "babel-preset-env": "^1.6.1",
     "babel-runtime": "^6.26.0",
+    "copy-webpack-plugin": "^4.6.0",
     "font-awesome": "^4.7.0",
     "materialize-css": "^0.100.2"
   },
@@ -32,7 +34,7 @@
     "html-webpack-plugin": "^2.30.1",
     "style-loader": "^0.19.0",
     "url-loader": "^0.6.2",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.9.1"
+    "webpack": "^3.12.0",
+    "webpack-dev-server": "^2.11.5"
   }
 }

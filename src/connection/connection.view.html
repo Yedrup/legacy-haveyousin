@@ -8,7 +8,7 @@
             </li>
             <li ng-if="connectionCtrl.temporaryTokenStatus===true && connectionCtrl.accessResponse.success !== true" class="c-item--connexion">
                 <p class="c-item__message">2nd : Click to connect to HaveYouSin</p>
-                <a ng-click="connectionCtrl.confirmCreation()" class="btn waves-effect waves-light c-button--connect-steps" href="">{{connectionCtrl.messageButtonConnect}}</a>
+                <a ng-click="connectionCtrl.confirmCreation()" class="btn waves-effect waves-light c-button--connect-steps" ui-sref="root.home" >{{connectionCtrl.messageButtonConnect}}</a>
             </li>
         </ul>
 

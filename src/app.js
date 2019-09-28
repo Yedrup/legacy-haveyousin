@@ -57,7 +57,7 @@ app.directive("cardContent", function () {
         bindToController: {
             content: '=data'
         },
-        templateUrl: "../src/directives/cards/card-content.view.html",
+        templateUrl: "./src/directives/cards/card-content.view.html",
         restrict: "E",
         controller: 'CardContentController',
         controllerAs: 'cardCtrl'
@@ -65,7 +65,7 @@ app.directive("cardContent", function () {
 });
 app.directive("pannel", function () {
     return {
-        templateUrl: "../src/directives/pannel/pannel.view.html",
+        templateUrl: "./src/directives/pannel/pannel.view.html",
         restrict: "E",
         require: ['^cardContent, ^detailContentController'],                
         scope: {
@@ -78,7 +78,7 @@ app.directive("pannel", function () {
 });
 app.directive("presentationApp", function () {
     return {
-        templateUrl: "../src/directives/presentationApp/presentationApp.view.html",
+        templateUrl: "./src/directives/presentationApp/presentationApp.view.html",
         restrict: "E",
 
     };

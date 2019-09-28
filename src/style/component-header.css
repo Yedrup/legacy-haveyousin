@@ -69,7 +69,7 @@
 
 .c-wrap-field--search:after {
     content: "\f002";
-    font-family: FontAwesome;
+    font-family: fontAwesome;
     position: absolute;
     color: #7199b1;
     font-size: 1.5rem;
