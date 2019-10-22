@@ -18,7 +18,7 @@ This app uses :
 To run it : 
 
 * ```$ npm install ```
-* ```$ npm run devserver ``` => go to your localhost port 9000 (http://localhost:9000/)
+* ```$ npm run serve ```
 
 To connect :
 * you need to be connected on TMBD. *HaveYouSin?* Connect button opens a tab with tmdb connect/sign up page
