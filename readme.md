@@ -17,10 +17,15 @@ This app uses :
 
 To run it : 
 
-* ```$ npm install ```
-* ```$ npm run serve ```
+* ```npm install ```
+* ```npm run serve ```
 
 To connect :
 * you need to be connected on TMBD. *HaveYouSin?* Connect button opens a tab with tmdb connect/sign up page
 
 
+
+________
+
+New version of Haveyousin is currently developed, you can take a look at : https://purdeychambraud.com/haveyousin/
+New version's repo will be pushed soon.

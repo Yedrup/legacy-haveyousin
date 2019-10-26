@@ -5,7 +5,10 @@
     <a ng-if='headerCtrl.isUserConnected !== true' class="btn waves-effect waves-light c-button--connect" ui-sref="root.connection" ng-hide="$state.current.name === 'connection'" >Go to connect page</a>
 </div>
 <header class="c-header__inner">
-    <h2 class="c-logo c-logo--header" ui-sref="root.home">HaveYouSin?</h2>
+    <div class="c-header__logo-link">
+        <h2 class="c-logo c-logo--header" ui-sref="root.home">HaveYouSin?</h2>
+        <a href="https://purdeychambraud.com/haveyousin" class="c-header__link--new-haveyousin" target="_blank">new</a>
+    </div>
     <form ng-if='headerCtrl.isUserConnected === true' class="c-form">
         <div class="input-field c-wrap-field--search">
             <input 
